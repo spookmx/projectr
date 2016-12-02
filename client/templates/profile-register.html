@@ -1,0 +1,33 @@
+<ion-view view-title="Register">
+  <ion-content padding="true" class="has-header">
+    <form name="registerForm" novalidate>
+      <div class="card list">
+        <label class="item item-input">
+          <input type="email" name="email" placeholder="Email" ng-model="profileRegister.email" required>
+        </label>
+        <label class="item item-input">
+          <input type="password" name="password" placeholder="Password" ng-model="profileRegister.password" ng-minlength="6" required>
+        </label>
+        <label class="item item-input">
+          <input type="password" name="passwordConfirm" placeholder="Confirm Password" ng-model="profileRegister.passwordConfirm" ng-minlength="6" required>
+        </label>
+        <div class="item">
+          <button class="item button button-block button-calm" ng-disabled="registerForm.$invalid" ng-click="profileRegister.login()">
+            Register
+          </button>
+        </div>
+      </div>
+    </form>
+    <div class="card">
+      <div class="item item-text-wrap error" ng-if="registerForm.email.$invalid && !registerForm.email.$pristine">
+        Valid email required
+      </div>
+      <div class="item item-text-wrap error" ng-if="registerForm.password.$error.minlength && !registerForm.password.$pristine">
+        Password should be at least 6 characters
+      </div>
+      <div class="item item-text-wrap error" ng-if="profileRegister.password != profileRegister.passwordConfirm && !registerForm.passwordConfirm.$pristine">
+        Password confirmation does not match
+      </div>
+    </div>
+  </ion-content>
+</ion-view>

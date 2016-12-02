@@ -1,0 +1,83 @@
+<ion-view view-title="Profile">
+  <ion-content padding="true" class="has-header">
+
+    <div ng-hide="profile.currentUser">
+      <div class="card list">
+        <div class="item item-divider">
+        Log In
+        </div>
+        <label class="item item-input">
+          <input type="text" placeholder="Email" ng-model="profile.loginForm.email">
+        </label>
+        <label class="item item-input">
+          <input type="password" placeholder="Password" ng-model="profile.loginForm.password">
+        </label>
+        <div>
+          <div class="row">
+
+            <div class="col">
+              <button class="button button-block button-calm button-outline button-stable" ng-click="profile.forgotPassword()">
+                Forgot Password
+              </button>
+            </div>
+
+            <div class="col">
+              <button class="item button button-block button-calm" ng-click="profile.login()">
+                Sign In
+              </button>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="list card">
+        <div class="item item-divider">
+          Register
+        </div>
+          <div class="row">
+
+            <div class="col">
+              <a class="button button-block button-positive" href="#/tab/register">
+                  Healthcare Professional
+              </a>
+            </div>
+
+            <div class="col">
+              <a class="button button-block button-positive" href="#/tab/register">
+                  Medical Representative
+              </a>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    <div ng-show="profile.currentUser">
+    	<div class="list card">
+          <div class="item item-divider">
+            Welcome {{ profile.user.givenName }} {{ profile.user.familyName }}!
+          </div>
+          <a href="/profile/details" class="item item-icon-left">
+            <i class="icon ion-person"></i>
+            About Me
+          </a>
+          <a ng-if="profile.user.role == 'rep'" href="/profile/portfolio" class="item item-icon-left">
+            <i class="icon ion-filing"></i>
+            Portfolio
+            <span class="badge">{{ profile.user.products ? profile.user.products.length : 0 }} Products</span>
+          </a>
+          <a ng-if="profile.user.role == 'rep'" href="/profile/payment" class="item item-icon-left">
+            <i class="icon ion-card"></i>
+            Payment
+          </a>
+          <a ng-click="profile.logout()" class="item item-icon-left assertive">
+            <i class="icon ion-log-out"></i>
+            Log Out
+          </a>
+        </div>
+    </div>
+  </ion-content>
+</ion-view>
