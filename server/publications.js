@@ -1,6 +1,23 @@
 import { Meteor } from 'meteor/meteor';
 import { Companies, Products } from '../lib/collections';
 
+Meteor.users.allow({
+  update: function (userId, user) {
+    return userId === user._id;
+  }
+});
+
+Meteor.publish('users', function() {
+  return Meteor.users.find({_id: this.userId}, {
+    fields: {
+      givenName: 1,
+      familyName: 1,
+      roleAttribute: 1,
+      portfolio: 1
+    }
+  });
+});
+
 Meteor.publish('products', function(searchString) {
   const selector = {};
 
@@ -23,17 +40,6 @@ Meteor.publish('products', function(searchString) {
   return Products.find(selector);
 });
 
-Meteor.publish('companies', function(searchString, filters) {
-  const selector = {};
-
-  filters.length ? selector.type = { '$in': filters } : null;
-
-  if (typeof searchString === 'string' && searchString.length) {
-    selector.name = {
-      $regex: `.*${searchString}.*`,
-      $options : 'i'
-    };
-  }
-
-  return Companies.find(selector, options);
+Meteor.publish('companies', function() {
+  return Companies.find({});
 });

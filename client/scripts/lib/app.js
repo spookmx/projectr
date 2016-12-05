@@ -13,6 +13,10 @@ import { Meteor } from 'meteor/meteor';
 import SearchCtrl from '../controllers/search.controller';
 import ProfileCtrl from '../controllers/profile.controller';
 import ProfileRegisterCtrl from '../controllers/profile-register.controller';
+import ProfilePortfolioCtrl from '../controllers/profile-portfolio.controller';
+import AddCompanyCtrl from '../controllers/add-company.controller';
+import AddCompanyService from '../services/add-company.service';
+
 import RoutesConfig from '../routes';
 
 const App = 'Projectr';
@@ -27,6 +31,9 @@ new Loader(App)
   .load(SearchCtrl)
   .load(ProfileCtrl)
   .load(ProfileRegisterCtrl)
+  .load(ProfilePortfolioCtrl)
+  .load(AddCompanyCtrl)
+  .load(AddCompanyService)
   .load(RoutesConfig);
 
 if (Meteor.isCordova) {

@@ -1,0 +1,37 @@
+<ion-modal-view ng-controller="AddCompanyCtrl as addCompany">
+  <ion-header-bar>
+    <h1 class="title">Add Company</h1>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="addCompany.hideAddCompanyModal()">Cancel</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <label class="item item-input">
+      <input type="text" placeholder="Search..." ng-model="addCompany.searchText">
+      <a ng-if="addCompany.searchText != ''" on-touch="addCompany.searchText=''">
+         <i class="icon ion-ios-close placeholder-icon"></i>
+      </a>
+    </label>
+
+    <!-- <a class="button button-block button-positive" ng-click="addCompany.addCompany('false')">
+      <i class="icon ion-plus"></i> Add Company
+    </a> -->
+
+    <ion-list>
+      <ion-radio  ng-repeat="company in addCompany.companies" ng-model="choice" ng-value="company._id">
+        {{company.name}}
+      </ion-radio>
+    </ion-list>
+
+    <!-- <div class="list list-mobile">
+      <div class="card" ng-repeat="company in addCompany.companies">
+        <div class="item">
+          <p>
+            {{company.name}}
+          </p>
+        </div>
+      </div>
+    </div> -->
+  </ion-content>
+</ion-modal-view>

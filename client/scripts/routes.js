@@ -2,6 +2,7 @@ import { Config } from 'angular-ecmascript/module-helpers';
 import searchTemplateUrl from '../templates/search.html';
 import profileTemplateUrl from '../templates/profile.html';
 import profileRegisterTemplateUrl from '../templates/profile-register.html';
+import profilePortfolioTemplateUrl from '../templates/profile-portfolio.html';
 import tabsTemplateUrl from '../templates/tabs.html';
 
 export default class RoutesConfig extends Config {
@@ -28,6 +29,15 @@ export default class RoutesConfig extends Config {
           'tab-profile': {
             templateUrl: profileRegisterTemplateUrl,
             controller: 'ProfileRegisterCtrl as profileRegister'
+          }
+        }
+      })
+      .state('tab.portfolio', {
+        url: '/portfolio',
+        views: {
+          'tab-profile': {
+            templateUrl: profilePortfolioTemplateUrl,
+            controller: 'ProfilePortfolioCtrl as profilePortfolio'
           }
         }
       })

@@ -64,12 +64,12 @@
             <i class="icon ion-person"></i>
             About Me
           </a>
-          <a ng-if="profile.user.role == 'rep'" href="/profile/portfolio" class="item item-icon-left">
+          <a ng-if="profile.user.roleAttribute == 'rep'" href="#/tab/portfolio" class="item item-icon-left">
             <i class="icon ion-filing"></i>
             Portfolio
-            <span class="badge">{{ profile.user.products ? profile.user.products.length : 0 }} Products</span>
+            <span class="badge">{{ profile.user.portfolio.products ? profile.user.portfolio.products.length : 0 }} Products</span>
           </a>
-          <a ng-if="profile.user.role == 'rep'" href="/profile/payment" class="item item-icon-left">
+          <a ng-if="profile.user.role == 'rep'" href="#/tab/payment" class="item item-icon-left">
             <i class="icon ion-card"></i>
             Payment
           </a>

@@ -1,33 +1,83 @@
 <ion-view view-title="Register">
-  <ion-content padding="true" class="has-header">
+  <ion-content padding="true" >
     <form name="registerForm" novalidate>
       <div class="card list">
-        <label class="item item-input">
-          <input type="email" name="email" placeholder="Email" ng-model="profileRegister.email" required>
+
+        <label class="item item-input item-select">
+          <div class="input-label">
+            Occupation
+          </div>
+          <select ng-model="profileRegister.occupation" required>
+            <option value="" disabled>- Please Choose -</option>
+            <option value="rep">Medical Representative</option>
+            <option value="pro">Healthcare Professional (Doctor, Nurse, etc..)</option>
+          </select>
         </label>
-        <label class="item item-input">
-          <input type="password" name="password" placeholder="Password" ng-model="profileRegister.password" ng-minlength="6" required>
+
+        <div class="row">
+
+          <div class="col">
+            <label class="item item-input item-stacked-label">
+              <div class="input-label">
+                First Name
+                <small class="assertive" ng-if="registerForm.givenName.$error.required && !registerForm.givenName.$pristine">
+                  Required
+                </small>
+              </div>
+              <input type="text" name="givenName" placeholder="John" ng-model="profileRegister.givenName" required>
+            </label>
+          </div>
+
+          <div class="col">
+            <label class="item item-input item-stacked-label">
+              <div class="input-label">
+                Last Name
+                <small class="assertive" ng-if="registerForm.familyName.$error.required && !registerForm.familyName.$pristine">
+                  Required
+                </small>
+              </div>
+              <input type="text" name="familyName" placeholder="Smith" ng-model="profileRegister.familyName" required>
+            </label>
+          </div>
+
+        </div>
+
+        <label class="item item-input item-stacked-label">
+          <div class="input-label">
+            Email
+            <small class="assertive" ng-if="registerForm.email.$invalid && !registerForm.email.$pristine">
+              Invalid
+            </small>
+          </div>
+          <input type="email" name="email" placeholder="john@smith.com" ng-model="profileRegister.email" required>
         </label>
-        <label class="item item-input">
-          <input type="password" name="passwordConfirm" placeholder="Confirm Password" ng-model="profileRegister.passwordConfirm" ng-minlength="6" required>
-        </label>
+
+        <div class="item item-input password">
+          <div class="label">
+            <span>
+              Password
+            </span>
+            <small class="assertive" ng-if="registerForm.password.$error.minlength && !registerForm.password.$pristine">
+              Should be at least 6 characters
+            </small>
+            &nbsp;
+          </div>
+          <label class="item-input-wrapper">
+            <input ng-if="!profileRegister.passwordToggleShow" type="password" name="password" placeholder="******" ng-model="profileRegister.password" ng-minlength="6" required>
+            <input ng-if="profileRegister.passwordToggleShow" type="text" name="password" placeholder="Password" ng-model="profileRegister.password" ng-minlength="6" required>
+          </label>
+          <button ng-click="profileRegister.passwordToggle()" class="button button-clear button-positive">
+             {{ profileRegister.passwordToggleLabel }}
+          </button>
+        </div>
+
         <div class="item">
-          <button class="item button button-block button-calm" ng-disabled="registerForm.$invalid" ng-click="profileRegister.login()">
+          <button class="item button button-block button-calm" ng-disabled="registerForm.$invalid" ng-click="profileRegister.register()">
             Register
           </button>
         </div>
+
       </div>
     </form>
-    <div class="card">
-      <div class="item item-text-wrap error" ng-if="registerForm.email.$invalid && !registerForm.email.$pristine">
-        Valid email required
-      </div>
-      <div class="item item-text-wrap error" ng-if="registerForm.password.$error.minlength && !registerForm.password.$pristine">
-        Password should be at least 6 characters
-      </div>
-      <div class="item item-text-wrap error" ng-if="profileRegister.password != profileRegister.passwordConfirm && !registerForm.passwordConfirm.$pristine">
-        Password confirmation does not match
-      </div>
-    </div>
   </ion-content>
 </ion-view>
