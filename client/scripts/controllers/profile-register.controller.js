@@ -28,7 +28,6 @@ export default class ProfileRegisterCtrl extends Controller {
   updateInitialInfo(){
     this.$scope.$watch('profileRegister.userId', () => {
       if(this.userId){
-        console.log("second", this.userId);
         Meteor.users.update(this.userId, {
           $set: {
             givenName: this.givenName,

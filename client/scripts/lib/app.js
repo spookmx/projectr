@@ -17,6 +17,12 @@ import ProfilePortfolioCtrl from '../controllers/profile-portfolio.controller';
 import AddCompanyCtrl from '../controllers/add-company.controller';
 import AddCompanyService from '../services/add-company.service';
 
+import PortfolioCompanyDirective from '../directives/portfolio-company.directive';
+import PortfolioCompanyCtrl from '../controllers/portfolio-company.controller';
+
+import AddProductsCtrl from '../controllers/add-products.controller';
+import AddProductsService from '../services/add-products.service';
+
 import RoutesConfig from '../routes';
 
 const App = 'Projectr';
@@ -34,6 +40,10 @@ new Loader(App)
   .load(ProfilePortfolioCtrl)
   .load(AddCompanyCtrl)
   .load(AddCompanyService)
+  .load(PortfolioCompanyDirective)
+  .load(PortfolioCompanyCtrl)
+  .load(AddProductsCtrl)
+  .load(AddProductsService)
   .load(RoutesConfig);
 
 if (Meteor.isCordova) {

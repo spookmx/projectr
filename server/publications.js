@@ -13,7 +13,8 @@ Meteor.publish('users', function() {
       givenName: 1,
       familyName: 1,
       roleAttribute: 1,
-      portfolio: 1
+      companies: 1,
+      products: 1
     }
   });
 });

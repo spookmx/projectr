@@ -1,7 +1,8 @@
 <ion-view view-title="Portfolio">
   <ion-content padding="true" >
-    <a class="button button-block button-positive" ng-click="profilePortfolio.showAddCompanyModal()">
+    <a class="button button-outline button-block button-positive" ng-click="profilePortfolio.showAddCompanyModal()">
       <i class="icon ion-plus"></i> Add Company
     </a>
+    <portfolio-company ng-repeat="company in profilePortfolio.user.companies" company-id="company"></portfolio-company>
   </ion-content>
 </ion-view>

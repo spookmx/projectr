@@ -1,0 +1,30 @@
+<ion-modal-view ng-controller="AddProductsCtrl as addProducts">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="addProducts.hideAddProductsModal()">Cancel</button>
+    </div>
+    <h1 class="title">Select Products</h1>
+    <div class="buttons">
+      <button class="button button-positive" ng-disabled="!addProducts.choice" ng-click="addProducts.selectAddProductsModal()">Add</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <label class="item item-input">
+      <input type="text" placeholder="Search..." ng-model="addProducts.searchText">
+      <a ng-if="addProducts.searchText != ''" on-touch="addProducts.searchText=''">
+         <i class="icon ion-ios-close placeholder-icon"></i>
+      </a>
+    </label>
+
+    <ion-list>
+      <ion-checkbox  ng-repeat="product in addProducts.products | filter:addProducts.filterProducts(addProducts.searchText, addProducts.userProducts)" ng-model="addProducts.choice[product._id]">
+        {{product.name_brand}}
+        <span class="item-note">
+          {{product.name_generic}}
+        </span>
+      </ion-checkbox>
+    </ion-list>
+
+  </ion-content>
+</ion-modal-view>
