@@ -1,0 +1,11 @@
+<div class="card">
+  <div class="item item-divider">
+    <h2>{{ portfolioProduct.productSelected.name_brand }}</h2>
+  </div>
+  <ion-list>
+    <ion-checkbox ng-model="portfolioProduct.product.s" ng-click="portfolioProduct.updateProductServices()">Sample</ion-checkbox>
+    <ion-checkbox ng-model="portfolioProduct.product.m" ng-click="portfolioProduct.updateProductServices()">Inservice Meal</ion-checkbox>
+    <ion-checkbox ng-model="portfolioProduct.product.i" ng-click="portfolioProduct.updateProductServices()">Stock Inventory</ion-checkbox>
+    <ion-checkbox ng-model="portfolioProduct.product.c" ng-click="portfolioProduct.updateProductServices()">Case Coverage</ion-checkbox>
+  </ion-list>
+</div>

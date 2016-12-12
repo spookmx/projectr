@@ -19,7 +19,7 @@ export default class PortfolioCompanyCtrl extends Controller {
     });
   }
   showAddProductsModal(){
-    this.AddProducts.showModal();
+    this.AddProducts.showModal(this.companyId);
   }
 }
 

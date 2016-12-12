@@ -9,8 +9,9 @@ export default class AddProductsService extends Service {
     this.templateUrl = addProductsTemplateUrl;
   }
 
-  showModal() {
+  showModal(companyId) {
     this.scope = this.$rootScope.$new();
+    this.scope.companyId = companyId;
 
     this.$ionicModal.fromTemplateUrl(this.templateUrl, {
       scope: this.scope

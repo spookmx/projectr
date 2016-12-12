@@ -13,7 +13,7 @@ export default class AddProductsCtrl extends Controller {
 
     this.helpers({
       products() {
-        return Products.find({});
+        return Products.find({"company": this.AddProducts.scope.companyId});
       },
       userProducts(){
         return Meteor.user().products;
@@ -38,13 +38,12 @@ export default class AddProductsCtrl extends Controller {
   selectAddProductsModal() {
     let selected = [];
     _.each(this.choice, (product, index)=>{
-      product ? selected.push({_id:index}) : null;
+      product ? selected.push({_id:index, s:false, m:false, i:false, c:false}) : null;
     });
-    console.log(selected);
-    // this.callMethod('addProducts', this.choice, (err, result) => {
-    //   if (err) return this.handleError(err);
-    //   this.hideAddProductsModal();
-    // });
+    this.callMethod('addProducts', selected, (err, result) => {
+      if (err) return this.handleError(err);
+      this.hideAddProductsModal();
+    });
   }
 
   handleError(err) {

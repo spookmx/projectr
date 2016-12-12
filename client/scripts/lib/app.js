@@ -23,6 +23,9 @@ import PortfolioCompanyCtrl from '../controllers/portfolio-company.controller';
 import AddProductsCtrl from '../controllers/add-products.controller';
 import AddProductsService from '../services/add-products.service';
 
+import PortfolioProductDirective from '../directives/portfolio-product.directive';
+import PortfolioProductCtrl from '../controllers/portfolio-product.controller';
+
 import RoutesConfig from '../routes';
 
 const App = 'Projectr';
@@ -44,6 +47,8 @@ new Loader(App)
   .load(PortfolioCompanyCtrl)
   .load(AddProductsCtrl)
   .load(AddProductsService)
+  .load(PortfolioProductDirective)
+  .load(PortfolioProductCtrl)
   .load(RoutesConfig);
 
 if (Meteor.isCordova) {

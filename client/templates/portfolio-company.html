@@ -1,11 +1,12 @@
 
-<div class="card" >
+<div class="card">
   <div class="item item-divider">
     {{ portfolioCompany.company.name }}
   </div>
   <div class="item">
     <a class="button button-outline button-block button-calm" ng-click="portfolioCompany.showAddProductsModal()">
-      <i class="icon ion-plus"></i> Add Product
+      <i class="icon ion-plus"></i> Add Products
     </a>
+    <portfolio-product ng-repeat="product in portfolioCompany.user.products" product-id="product._id"></portfolio-product>
   </div>
 </div>
