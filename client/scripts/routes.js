@@ -6,6 +6,7 @@ import profilePortfolioTemplateUrl from '../templates/profile-portfolio.html';
 import profileTerritoriesTemplateUrl from '../templates/profile-territories.html';
 import profileAccountTemplateUrl from '../templates/profile-account.html';
 import adminPortfolioTemplateUrl from '../templates/admin-portfolio.html';
+import adminEditCompanyTemplateUrl from '../templates/admin-edit-company.html';
 import tabsTemplateUrl from '../templates/tabs.html';
 
 export default class RoutesConfig extends Config {
@@ -68,6 +69,15 @@ export default class RoutesConfig extends Config {
           'tab-profile': {
             templateUrl: adminPortfolioTemplateUrl,
             controller: 'AdminPortfolioCtrl as adminPortfolio'
+          }
+        }
+      })
+      .state('tab.admin-company', {
+        url: '/admin-company/:companyId',
+        views: {
+          'tab-profile': {
+            templateUrl: adminEditCompanyTemplateUrl,
+            controller: 'AdminCompanyCtrl as adminCompany'
           }
         }
       })

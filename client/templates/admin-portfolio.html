@@ -11,7 +11,7 @@
       <div class="item item-divider">
         Active
       </div>
-      <a ng-repeat="company in adminPortfolio.companies | filter:adminPortfolio.searchText" class="item" ng-click="adminPortfolio.editCompany(company._id)">
+      <a ng-repeat="company in adminPortfolio.companies | filter:adminPortfolio.searchText" class="item" href="#/tab/admin-company/{{company._id}}">
         {{ company.name }}
       </a>
     </div>

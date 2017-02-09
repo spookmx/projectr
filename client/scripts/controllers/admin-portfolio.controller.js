@@ -21,10 +21,6 @@ export default class AdminPortfolioCtrl extends Controller {
     });
   }
 
-  editCompany(companyId){
-    this.AdminCompany.showModal(companyId);
-  }
-
   showAddCompanyModal(){
     this.AdminCompany.showModal();
   }

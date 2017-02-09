@@ -6,9 +6,9 @@ import { Companies, Products } from '../../../lib/collections';
 export default class AdminCompanyCtrl extends Controller {
   constructor() {
     super(...arguments);
-    if(this.AdminCompany.scope.companyId){
+    if(this.$stateParams.companyId){
       //Existing Company
-      this.companyId = this.AdminCompany.scope.companyId;
+      this.companyId = this.$stateParams.companyId;
       this.subscribe('companies');
       this.subscribe('products');
       this.helpers({
@@ -31,7 +31,6 @@ export default class AdminCompanyCtrl extends Controller {
     if(this.companyId){
       this.callMethod('adminUpdateCompany', this.company, (err, result) => {
         if (err) return this.handleError(err);
-        this.hideAdminCompanyModal();
       });
     }else{
       this.callMethod('adminAddCompany', this.company, (err, result) => {
@@ -39,6 +38,14 @@ export default class AdminCompanyCtrl extends Controller {
         this.hideAdminCompanyModal();
       });
     }
+  }
+
+  showAddProductModal(){
+    this.AdminProduct.showModal(this.companyId);
+  }
+
+  editProduct(productId){
+    this.AdminProduct.showModal(this.companyId, productId);
   }
 
   handleError(err) {
@@ -58,4 +65,4 @@ export default class AdminCompanyCtrl extends Controller {
 }
 
 AdminCompanyCtrl.$name = 'AdminCompanyCtrl';
-AdminCompanyCtrl.$inject = ['AdminCompany', '$ionicPopup', '$log', '$scope'];
+AdminCompanyCtrl.$inject = ['AdminProduct', 'AdminCompany', '$ionicPopup', '$log', '$scope', '$stateParams'];

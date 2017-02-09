@@ -1,15 +1,5 @@
-<ion-modal-view ng-controller="AdminCompanyCtrl as adminCompany">
-  <ion-header-bar>
-    <div class="buttons">
-      <button class="button button-clear button-positive" ng-click="adminCompany.hideAdminCompanyModal()">Cancel</button>
-    </div>
-    <h1 class="title">{{ adminCompany.title }}</h1>
-    <div class="buttons">
-      <button class="button button-positive" ng-click="adminCompany.saveAdminCompanyModal()">Save</button>
-    </div>
-  </ion-header-bar>
-
-  <ion-content>
+<ion-view view-title="{{ adminCompany.title }}">
+  <ion-content padding="true">
     <div class="padding badge" ng-if="adminCompany.company.lastUpdatedAt">
       <i class="icon ion-calendar"></i> Last Updated: {{ adminCompany.company.lastUpdatedAt | date:'medium' }}
     </div>
@@ -35,6 +25,30 @@
              <div class="handle"></div>
            </div>
          </label>
+      </div>
+      <div>
+        <button class="button button-block button-positive" ng-click="adminCompany.saveAdminCompanyModal()">Save</button>
+      </div>
+
+    </div>
+
+    <div class="card" ng-if="adminCompany.company._id">
+      <div class="item item-divider">
+        Products
+      </div>
+      <div class="padding">
+        <a class="button button-outline button-block button-positive" ng-click="adminCompany.showAddProductModal()">
+          <i class="icon ion-plus"></i> Add Product
+        </a>
+      </div>
+
+      <div class="list">
+        <div class="item item-divider">
+          Active
+        </div>
+        <a ng-repeat="product in adminCompany.products | filter:adminCompany.searchText" class="item" ng-click="adminCompany.editProduct(product._id)">
+          {{ product.name }}
+        </a>
       </div>
     </div>
 

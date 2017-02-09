@@ -10,27 +10,44 @@
   </ion-header-bar>
 
   <ion-content>
-    <div class="padding badge" ng-if="adminProduct.company.lastUpdatedAt">
-      <i class="icon ion-calendar"></i> Last Updated: {{ adminProduct.company.lastUpdatedAt | date:'medium' }}
+    <div class="padding badge" ng-if="adminProduct.product.lastUpdatedAt">
+      <i class="icon ion-calendar"></i> Last Updated: {{ adminProduct.product.lastUpdatedAt | date:'medium' }}
     </div>
 
     <div class="list">
       <label class="item item-input item-floating-label">
         <span class="input-label">Name</span>
-        <input type="text" ng-model="adminProduct.company.name" placeholder="Name">
+        <input type="text" ng-model="adminProduct.product.name" placeholder="Name">
       </label>
       <label class="item item-input item-floating-label">
         <span class="input-label">Description</span>
-        <textarea rows="5" ng-model="adminProduct.company.description" placeholder="Description"></textarea>
+        <textarea rows="5" ng-model="adminProduct.product.description" placeholder="Description"></textarea>
       </label>
       <label class="item item-input item-floating-label">
         <span class="input-label">Website</span>
-        <input type="text" ng-model="adminProduct.company.website" placeholder="Website">
+        <input type="text" ng-model="adminProduct.product.website" placeholder="Website">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Copay Assistance Information</span>
+        <textarea rows="5" ng-model="adminProduct.product.copayInformation" placeholder="Copay assistance information"></textarea>
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Copay Assistance Website</span>
+        <input type="text" ng-model="adminProduct.product.copayWebsite" placeholder="Copay Assistance Website">
+      </label>
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Type
+        </div>
+        <select ng-model="adminProduct.product.type">
+          <option value="drug">Drug</option>
+          <option value="device">Device</option>
+        </select>
       </label>
       <div class="item item-toggle">
          Active
          <label class="toggle toggle-positive">
-           <input type="checkbox" ng-model="adminProduct.company.active">
+           <input type="checkbox" ng-model="adminProduct.product.active">
            <div class="track">
              <div class="handle"></div>
            </div>

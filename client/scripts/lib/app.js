@@ -64,6 +64,9 @@ import AdminPortfolioCtrl from '../controllers/admin-portfolio.controller';
 import AdminCompanyCtrl from '../controllers/admin-company.controller';
 import AdminCompanyService from '../services/admin-company.service';
 
+import AdminProductCtrl from '../controllers/admin-product.controller';
+import AdminProductService from '../services/admin-product.service';
+
 import RoutesConfig from '../routes';
 
 const App = 'Projectr';
@@ -110,6 +113,8 @@ new Loader(App)
   .load(AdminPortfolioCtrl)
   .load(AdminCompanyCtrl)
   .load(AdminCompanyService)
+  .load(AdminProductCtrl)
+  .load(AdminProductService)
   .load(RoutesConfig);
 
 if (Meteor.isCordova) {
