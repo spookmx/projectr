@@ -1,0 +1,20 @@
+<ion-modal-view ng-controller="EditCityCtrl as editCity">
+  <ion-header-bar>
+    <h1 class="title">Edit City</h1>
+    <div class="buttons">
+      <button class="button button-positive" ng-click="editCity.hideEditCityModal()">Done</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-stacked-label">
+        <span class="input-label">Hospitals Covered</span>
+        <textarea ng-model="editCity.selectedCity.hospitals" rows="5" placeholder="Hospital South, Hospital North, etc."></textarea>
+      </label>
+    </div>
+    <button ng-click="editCity.removeCity()" class="button button-full button-outline button-assertive">
+      <i class="icon ion-trash-b"></i> Remove City
+    </button>
+  </ion-content>
+</ion-modal-view>

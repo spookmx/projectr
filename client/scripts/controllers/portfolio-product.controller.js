@@ -14,16 +14,17 @@ export default class PortfolioProductCtrl extends Controller {
         return Products.findOne({_id:this.productId});
       },
       product(){
-        return Meteor.user().products.filter((product) => product._id == this.productId)[0];
+        return _.findWhere(Meteor.user().products, {_id:this.productId});
+      },
+      servicesCount(){
+        return _.chain(this.getReactively('product')).map((value)=>{ return value === true ? 1 : 0}).reduce((memo, value)=>{ return memo+value }).value()
       }
     });
   }
-  updateProductServices(){
-    this.callMethod('updateProductServices', this.product, (err, result) => {
-      if (err) return this.handleError(err);
-    });
+  editProduct(){
+    this.EditProduct.showModal(this.productId);
   }
 }
 
 PortfolioProductCtrl.$name = 'PortfolioProductCtrl';
-PortfolioProductCtrl.$inject = ['$log', '$scope'];
+PortfolioProductCtrl.$inject = ['EditProduct', '$log', '$scope'];

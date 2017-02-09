@@ -1,0 +1,8 @@
+<ion-view view-title="Territories">
+  <ion-content padding="true" >
+    <a class="button button-outline button-block button-positive" ng-click="profileTerritories.showAddStateModal()">
+      <i class="icon ion-plus"></i> Add State
+    </a>
+    <territories-state ng-repeat="state in profileTerritories.user.states" state-id="state"></territories-state>
+  </ion-content>
+</ion-view>

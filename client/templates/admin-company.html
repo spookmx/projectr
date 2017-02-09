@@ -1,0 +1,43 @@
+<ion-modal-view ng-controller="AdminCompanyCtrl as adminCompany">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="adminCompany.hideAdminCompanyModal()">Cancel</button>
+    </div>
+    <h1 class="title">{{ adminCompany.title }}</h1>
+    <div class="buttons">
+      <button class="button button-positive" ng-click="adminCompany.saveAdminCompanyModal()">Save</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Name</span>
+        <input type="text" ng-model="adminCompany.company.name" placeholder="Name">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Description</span>
+        <textarea rows="5" ng-model="adminCompany.company.description" placeholder="Description"></textarea>
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Website</span>
+        <input type="text" ng-model="adminCompany.company.website" placeholder="Website">
+      </label>
+
+      <div class="item item-toggle">
+         Active
+         <label class="toggle toggle-positive">
+           <input type="checkbox" ng-model="adminCompany.company.active">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </div>
+
+    </div>
+    <div class="padding badge">
+      <i class="icon ion-calendar"></i> Last Updated: {{ adminCompany.company.lastUpdatedAt | date:'medium' }}
+    </div>
+
+  </ion-content>
+</ion-modal-view>

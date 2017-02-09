@@ -13,6 +13,10 @@ export default class SearchCtrl extends Controller {
       }
     });
   }
+  showSearchSelectLocationModal(){
+    this.SearchSelectLocation.showModal(this.companyId);
+  }
 }
 
 SearchCtrl.$name = 'SearchCtrl';
+SearchCtrl.$inject = ['SearchSelectLocation', '$ionicPopup', '$log', '$scope', '$rootScope'];

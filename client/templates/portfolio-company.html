@@ -3,10 +3,13 @@
   <div class="item item-divider">
     {{ portfolioCompany.company.name }}
   </div>
-  <div class="item">
+  <div class="item button-bar">
     <a class="button button-outline button-block button-calm" ng-click="portfolioCompany.showAddProductsModal()">
       <i class="icon ion-plus"></i> Add Products
     </a>
-    <portfolio-product ng-repeat="product in portfolioCompany.user.products" product-id="product._id"></portfolio-product>
+    <a class="button button-outline button-block button-assertive" ng-click="portfolioCompany.removeCompany()">
+      <i class="icon ion-trash-b"></i> Remove Company
+    </a>
   </div>
+  <portfolio-product ng-repeat="product in portfolioCompany.products" product-id="product._id"></portfolio-product>
 </div>

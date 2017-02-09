@@ -13,7 +13,9 @@ import { Meteor } from 'meteor/meteor';
 import SearchCtrl from '../controllers/search.controller';
 import ProfileCtrl from '../controllers/profile.controller';
 import ProfileRegisterCtrl from '../controllers/profile-register.controller';
+
 import ProfilePortfolioCtrl from '../controllers/profile-portfolio.controller';
+
 import AddCompanyCtrl from '../controllers/add-company.controller';
 import AddCompanyService from '../services/add-company.service';
 
@@ -23,8 +25,44 @@ import PortfolioCompanyCtrl from '../controllers/portfolio-company.controller';
 import AddProductsCtrl from '../controllers/add-products.controller';
 import AddProductsService from '../services/add-products.service';
 
+import EditProductCtrl from '../controllers/edit-product.controller';
+import EditProductService from '../services/edit-product.service';
+
 import PortfolioProductDirective from '../directives/portfolio-product.directive';
 import PortfolioProductCtrl from '../controllers/portfolio-product.controller';
+
+import ProfileTerritoriesCtrl from '../controllers/profile-territories.controller';
+
+import AddStateCtrl from '../controllers/add-state.controller';
+import AddStateService from '../services/add-state.service';
+
+import TerritoriesStateDirective from '../directives/territories-state.directive';
+import TerritoriesStateCtrl from '../controllers/territories-state.controller';
+
+import AddCitiesCtrl from '../controllers/add-cities.controller';
+import AddCitiesService from '../services/add-cities.service';
+
+import TerritoriesCityDirective from '../directives/territories-city.directive';
+import TerritoriesCityCtrl from '../controllers/territories-city.controller';
+
+import SearchProductRepsDirective from '../directives/search-product-reps.directive';
+import SearchProductRepsCtrl from '../controllers/search-product-reps.controller';
+
+import SearchSelectLocationCtrl from '../controllers/search-select-location.controller';
+import SearchSelectLocationService from '../services/search-select-location.service';
+
+import ShowStateAbbrevDirective from '../directives/show-state-abbrev.directive';
+import ShowStateAbbrevCtrl from '../controllers/show-state-abbrev.controller';
+
+import ProfileAccountCtrl from '../controllers/profile-account.controller';
+
+import EditCityCtrl from '../controllers/edit-city.controller';
+import EditCityService from '../services/edit-city.service';
+
+import AdminPortfolioCtrl from '../controllers/admin-portfolio.controller';
+
+import AdminCompanyCtrl from '../controllers/admin-company.controller';
+import AdminCompanyService from '../services/admin-company.service';
 
 import RoutesConfig from '../routes';
 
@@ -47,8 +85,31 @@ new Loader(App)
   .load(PortfolioCompanyCtrl)
   .load(AddProductsCtrl)
   .load(AddProductsService)
+  .load(EditProductCtrl)
+  .load(EditProductService)
   .load(PortfolioProductDirective)
   .load(PortfolioProductCtrl)
+  .load(ProfileTerritoriesCtrl)
+  .load(AddStateCtrl)
+  .load(AddStateService)
+  .load(TerritoriesStateDirective)
+  .load(TerritoriesStateCtrl)
+  .load(AddCitiesCtrl)
+  .load(AddCitiesService)
+  .load(TerritoriesCityDirective)
+  .load(TerritoriesCityCtrl)
+  .load(SearchProductRepsDirective)
+  .load(SearchProductRepsCtrl)
+  .load(SearchSelectLocationService)
+  .load(SearchSelectLocationCtrl)
+  .load(ShowStateAbbrevDirective)
+  .load(ShowStateAbbrevCtrl)
+  .load(ProfileAccountCtrl)
+  .load(EditCityCtrl)
+  .load(EditCityService)
+  .load(AdminPortfolioCtrl)
+  .load(AdminCompanyCtrl)
+  .load(AdminCompanyService)
   .load(RoutesConfig);
 
 if (Meteor.isCordova) {

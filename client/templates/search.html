@@ -8,6 +8,11 @@
       </a>
     </label>
 
+    <label class="item item-input" ng-click="search.showSearchSelectLocationModal()">
+      <i class="icon ion-location placeholder-icon"></i>
+      <input class="item-input-button" type="text" placeholder="Search by city or state" ng-model="search.$rootScope.selectedLocation.label">
+    </label>
+
     <div class="list list-mobile" ng-if="search.searchText != ''">
       <div class="card" ng-repeat="product in search.products">
         <div class="item">
@@ -17,12 +22,16 @@
           <p>
             {{product.name_generic}}
           </p>
-          <product-offerings-list product="product._id"></product-offerings-list>
+          <search-product-reps product="product" location="search.$rootScope.selectedLocation"></search-product-reps>
         </div>
       </div>
     </div>
 
-    <div class="list list-mobile" ng-if="search.searchText == ''">
+    <button class="button button-full button-positive">
+      Search
+    </button>
+
+    <!-- <div class="list list-mobile" ng-if="search.searchText == ''">
       <div class="card">
         <div class="item item-divider">
           I'm interested in...
@@ -39,7 +48,7 @@
           <a class="button icon-left ion-flag button-clear button-calm">My Interests</a>
         </div>
       </div>
-    </div>
+    </div> -->
 
   </ion-content>
 </ion-view>

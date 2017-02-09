@@ -3,6 +3,9 @@ import searchTemplateUrl from '../templates/search.html';
 import profileTemplateUrl from '../templates/profile.html';
 import profileRegisterTemplateUrl from '../templates/profile-register.html';
 import profilePortfolioTemplateUrl from '../templates/profile-portfolio.html';
+import profileTerritoriesTemplateUrl from '../templates/profile-territories.html';
+import profileAccountTemplateUrl from '../templates/profile-account.html';
+import adminPortfolioTemplateUrl from '../templates/admin-portfolio.html';
 import tabsTemplateUrl from '../templates/tabs.html';
 
 export default class RoutesConfig extends Config {
@@ -38,6 +41,33 @@ export default class RoutesConfig extends Config {
           'tab-profile': {
             templateUrl: profilePortfolioTemplateUrl,
             controller: 'ProfilePortfolioCtrl as profilePortfolio'
+          }
+        }
+      })
+      .state('tab.territories', {
+        url: '/territories',
+        views: {
+          'tab-profile': {
+            templateUrl: profileTerritoriesTemplateUrl,
+            controller: 'ProfileTerritoriesCtrl as profileTerritories'
+          }
+        }
+      })
+      .state('tab.account', {
+        url: '/account',
+        views: {
+          'tab-profile': {
+            templateUrl: profileAccountTemplateUrl,
+            controller: 'ProfileAccountCtrl as profileAccount'
+          }
+        }
+      })
+      .state('tab.admin-portfolio', {
+        url: '/admin-portfolio',
+        views: {
+          'tab-profile': {
+            templateUrl: adminPortfolioTemplateUrl,
+            controller: 'AdminPortfolioCtrl as adminPortfolio'
           }
         }
       })

@@ -1,0 +1,20 @@
+<ion-modal-view ng-controller="EditProductCtrl as editProduct">
+  <ion-header-bar>
+    <h1 class="title">Edit Product</h1>
+    <div class="buttons">
+      <button class="button button-positive" ng-click="editProduct.hideEditProductModal()">Done</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <ion-list>
+      <ion-checkbox ng-model="editProduct.selectedProduct.s" ng-click="editProduct.updateProductServices()">Sample</ion-checkbox>
+      <ion-checkbox ng-model="editProduct.selectedProduct.m" ng-click="editProduct.updateProductServices()">Inservice Meal</ion-checkbox>
+      <ion-checkbox ng-model="editProduct.selectedProduct.i" ng-click="editProduct.updateProductServices()">Stock Inventory</ion-checkbox>
+      <ion-checkbox ng-model="editProduct.selectedProduct.c" ng-click="editProduct.updateProductServices()">Case Coverage</ion-checkbox>
+    </ion-list>
+    <button ng-click="editProduct.removeProduct()" class="button button-full button-outline button-assertive">
+      <i class="icon ion-trash-b"></i> Remove Product
+    </button>
+  </ion-content>
+</ion-modal-view>

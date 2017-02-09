@@ -1,5 +1,5 @@
 import { Meteor } from 'meteor/meteor';
-import { Companies, Products } from '../lib/collections';
+import { Companies, Products, States, Cities } from '../lib/collections';
 
 Meteor.users.allow({
   update: function (userId, user) {
@@ -14,7 +14,9 @@ Meteor.publish('users', function() {
       familyName: 1,
       roleAttribute: 1,
       companies: 1,
-      products: 1
+      products: 1,
+      states: 1,
+      cities: 1
     }
   });
 });
@@ -43,4 +45,12 @@ Meteor.publish('products', function(searchString) {
 
 Meteor.publish('companies', function() {
   return Companies.find({});
+});
+
+Meteor.publish('states', function() {
+  return States.find({});
+});
+
+Meteor.publish('cities', function() {
+  return Cities.find({});
 });

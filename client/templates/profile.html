@@ -33,49 +33,57 @@
 
       <div class="list card">
         <div class="item item-divider">
-          Register
+          New User?
         </div>
-          <div class="row">
-
-            <div class="col">
-              <a class="button button-block button-positive" href="#/tab/register">
-                  Healthcare Professional
-              </a>
-            </div>
-
-            <div class="col">
-              <a class="button button-block button-positive" href="#/tab/register">
-                  Medical Representative
-              </a>
-            </div>
-
+          <div class="item item-text-wrap">
+            Register for an Medical Representative account and offer your products to Healthcare Professionals in your area.
+            <a class="button button-block button-positive" href="#/tab/register">
+                Register
+            </a>
           </div>
         </div>
       </div>
     </div>
 
-
     <div ng-show="profile.currentUser">
-    	<div class="list card">
-          <div class="item item-divider">
-            Welcome {{ profile.user.givenName }} {{ profile.user.familyName }}!
-          </div>
-          <a href="/profile/details" class="item item-icon-left">
+    	<div class="list">
+          <a href="#/tab/account" class="item item-icon-left">
             <i class="icon ion-person"></i>
-            About Me
+            Account Settings
+            <span class="badge">{{ profile.user.givenName }} {{ profile.user.familyName }}</span>
           </a>
           <a ng-if="profile.user.roleAttribute == 'rep'" href="#/tab/portfolio" class="item item-icon-left">
             <i class="icon ion-filing"></i>
             Portfolio
-            <span class="badge">{{ profile.user.portfolio.products ? profile.user.portfolio.products.length : 0 }} Products</span>
+            <span class="badge">{{ profile.user.products ? profile.user.products.length : 0 }} Products</span>
           </a>
-          <a ng-if="profile.user.role == 'rep'" href="#/tab/payment" class="item item-icon-left">
-            <i class="icon ion-card"></i>
-            Payment
+          <a ng-if="profile.user.roleAttribute == 'rep'" href="#/tab/territories" class="item item-icon-left">
+            <i class="icon ion-map"></i>
+            Territories
+            <span class="badge">{{ profile.user.cities ? profile.user.cities.length : 0 }} Cities</span>
           </a>
           <a ng-click="profile.logout()" class="item item-icon-left assertive">
             <i class="icon ion-log-out"></i>
             Log Out
+          </a>
+        </div>
+    </div>
+
+    <!-- To Do - restric Admin area with  profile.currentUser.roleAttribute -->
+    <div ng-show="profile.currentUser">
+      <div class="list">
+          <div class="item item-divider">
+            Management Area
+          </div>
+          <a ng-if="profile.user.roleAttribute == 'rep'" href="#/tab/admin-portfolio" class="item item-icon-left positive">
+            <i class="icon ion-filing"></i>
+            Portfolio
+            <span class="badge">{{ profile.user.products ? profile.user.products.length : 0 }} Products</span>
+          </a>
+          <a ng-if="profile.user.roleAttribute == 'rep'" href="#/tab/admin-territories" class="item item-icon-left positive">
+            <i class="icon ion-map"></i>
+            Territories
+            <span class="badge">{{ profile.user.cities ? profile.user.cities.length : 0 }} Cities</span>
           </a>
         </div>
     </div>

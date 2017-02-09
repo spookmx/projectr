@@ -10,6 +10,7 @@ export default class PortfolioProductDirective extends Directive {
     this.controller = PortfolioProductCtrl;
     this.controllerAs = 'portfolioProduct';
     this.bindToController = true;
+    this.replace = true;
     this.scope = {
       productId:'<'
     };

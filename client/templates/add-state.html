@@ -1,0 +1,27 @@
+<ion-modal-view ng-controller="AddStateCtrl as addState">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="addState.hideAddStateModal()">Cancel</button>
+    </div>
+    <h1 class="title">Select State</h1>
+    <div class="buttons">
+      <button class="button button-positive" ng-disabled="!addState.choice" ng-click="addState.selectAddStateModal()">Add</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <label class="item item-input">
+      <input type="text" placeholder="Search..." ng-model="addState.searchText">
+      <a ng-if="addState.searchText != ''" on-touch="addState.searchText=''">
+         <i class="icon ion-ios-close placeholder-icon"></i>
+      </a>
+    </label>
+
+    <ion-list>
+      <ion-radio  ng-repeat="state in addState.states | filter:addState.filterStates(addState.searchText, addState.userStates)" ng-model="addState.choice" ng-value="state._id">
+        {{state.name}}
+      </ion-radio>
+    </ion-list>
+
+  </ion-content>
+</ion-modal-view>

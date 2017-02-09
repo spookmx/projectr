@@ -1,0 +1,27 @@
+<ion-modal-view ng-controller="AddCitiesCtrl as addCities">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="addCities.hideAddCitiesModal()">Cancel</button>
+    </div>
+    <h1 class="title">Select Cities</h1>
+    <div class="buttons">
+      <button class="button button-positive" ng-disabled="!addCities.choice" ng-click="addCities.selectAddCitiesModal()">Add</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <label class="item item-input">
+      <input type="text" placeholder="Search..." ng-model="addCities.searchText">
+      <a ng-if="addCities.searchText != ''" on-touch="addCities.searchText=''">
+         <i class="icon ion-ios-close placeholder-icon"></i>
+      </a>
+    </label>
+
+    <ion-list>
+      <ion-checkbox  ng-repeat="city in addCities.cities | filter:addCities.filterCities(addCities.searchText, addCities.userCities)" ng-model="addCities.choice[city._id]">
+        {{city.name}}
+      </ion-checkbox>
+    </ion-list>
+
+  </ion-content>
+</ion-modal-view>
