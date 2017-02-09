@@ -10,6 +10,10 @@
   </ion-header-bar>
 
   <ion-content>
+    <div class="padding badge" ng-if="adminCompany.company.lastUpdatedAt">
+      <i class="icon ion-calendar"></i> Last Updated: {{ adminCompany.company.lastUpdatedAt | date:'medium' }}
+    </div>
+
     <div class="list">
       <label class="item item-input item-floating-label">
         <span class="input-label">Name</span>
@@ -23,7 +27,6 @@
         <span class="input-label">Website</span>
         <input type="text" ng-model="adminCompany.company.website" placeholder="Website">
       </label>
-
       <div class="item item-toggle">
          Active
          <label class="toggle toggle-positive">
@@ -33,10 +36,26 @@
            </div>
          </label>
       </div>
-
     </div>
-    <div class="padding badge">
-      <i class="icon ion-calendar"></i> Last Updated: {{ adminCompany.company.lastUpdatedAt | date:'medium' }}
+
+    <div class="card" ng-if="adminCompany.company._id">
+      <div class="item item-divider">
+        Products
+      </div>
+      <div class="padding">
+        <a class="button button-outline button-block button-positive" ng-click="adminCompany.showAddProductModal()">
+          <i class="icon ion-plus"></i> Add Product
+        </a>
+      </div>
+
+      <div class="list">
+        <div class="item item-divider">
+          Active
+        </div>
+        <a ng-repeat="product in adminCompany.products | filter:adminCompany.searchText" class="item" ng-click="adminCompany.editProduct(product._id)">
+          {{ product.name_brand }}
+        </a>
+      </div>
     </div>
 
   </ion-content>

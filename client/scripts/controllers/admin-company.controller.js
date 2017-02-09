@@ -1,7 +1,7 @@
 import { Meteor } from 'meteor/meteor';
 import { _ } from 'meteor/underscore';
 import { Controller } from 'angular-ecmascript/module-helpers';
-import { Companies } from '../../../lib/collections';
+import { Companies, Products } from '../../../lib/collections';
 
 export default class AdminCompanyCtrl extends Controller {
   constructor() {
@@ -10,10 +10,14 @@ export default class AdminCompanyCtrl extends Controller {
       //Existing Company
       this.companyId = this.AdminCompany.scope.companyId;
       this.subscribe('companies');
+      this.subscribe('products');
       this.helpers({
         company() {
           return Companies.findOne({_id: this.companyId});
-        }
+        },
+        products() {
+          return Products.find({company: this.companyId});
+        },
       });
       this.title = "Update "+this.company.name;
     }else{

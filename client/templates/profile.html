@@ -70,17 +70,17 @@
     </div>
 
     <!-- To Do - restric Admin area with  profile.currentUser.roleAttribute -->
-    <div ng-show="profile.currentUser">
+    <div ng-show="profile.currentUser" ng-if="profile.user.roleAttribute == 'manager'" >
       <div class="list">
           <div class="item item-divider">
             Management Area
           </div>
-          <a ng-if="profile.user.roleAttribute == 'rep'" href="#/tab/admin-portfolio" class="item item-icon-left positive">
+          <a href="#/tab/admin-portfolio" class="item item-icon-left positive">
             <i class="icon ion-filing"></i>
             Portfolio
             <span class="badge">{{ profile.user.products ? profile.user.products.length : 0 }} Products</span>
           </a>
-          <a ng-if="profile.user.roleAttribute == 'rep'" href="#/tab/admin-territories" class="item item-icon-left positive">
+          <a href="#/tab/admin-territories" class="item item-icon-left positive">
             <i class="icon ion-map"></i>
             Territories
             <span class="badge">{{ profile.user.cities ? profile.user.cities.length : 0 }} Cities</span>

@@ -1,0 +1,42 @@
+<ion-modal-view ng-controller="AdminProductCtrl as adminProduct">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="adminProduct.hideAdminProductModal()">Cancel</button>
+    </div>
+    <h1 class="title">{{ adminProduct.title }}</h1>
+    <div class="buttons">
+      <button class="button button-positive" ng-click="adminProduct.saveAdminProductModal()">Save</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <div class="padding badge" ng-if="adminProduct.company.lastUpdatedAt">
+      <i class="icon ion-calendar"></i> Last Updated: {{ adminProduct.company.lastUpdatedAt | date:'medium' }}
+    </div>
+
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Name</span>
+        <input type="text" ng-model="adminProduct.company.name" placeholder="Name">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Description</span>
+        <textarea rows="5" ng-model="adminProduct.company.description" placeholder="Description"></textarea>
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Website</span>
+        <input type="text" ng-model="adminProduct.company.website" placeholder="Website">
+      </label>
+      <div class="item item-toggle">
+         Active
+         <label class="toggle toggle-positive">
+           <input type="checkbox" ng-model="adminProduct.company.active">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-modal-view>
