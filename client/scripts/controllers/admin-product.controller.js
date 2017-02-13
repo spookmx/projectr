@@ -41,6 +41,27 @@ export default class AdminProductCtrl extends Controller {
     }
   }
 
+  deleteProduct(){
+    this.$ionicPopup.show({
+      template: 'This product will be removed from all portfolios and deleted from the application. Do you want to proceed?',
+      title: 'Delete Product',
+      subTitle: '',
+      buttons: [
+        { text: 'No' },
+        {
+          text: '<b>Yes</b>',
+          type: 'button-positive',
+          onTap: (e)=> {
+            this.callMethod('adminDeleteProduct', this.productId, (err, result) => {
+              if (err) return this.handleError(err);
+              this.hideAdminProductModal();
+            });
+          }
+        }
+      ]
+    });
+  }
+
   handleError(err) {
     this.$log.error('Adding product error ', err);
 

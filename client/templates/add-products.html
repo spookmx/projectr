@@ -19,10 +19,7 @@
 
     <ion-list>
       <ion-checkbox  ng-repeat="product in addProducts.products | filter:addProducts.filterProducts(addProducts.searchText, addProducts.userProducts)" ng-model="addProducts.choice[product._id]">
-        {{product.name_brand}}
-        <span class="item-note">
-          {{product.name_generic}}
-        </span>
+        {{product.name}}
       </ion-checkbox>
     </ion-list>
 

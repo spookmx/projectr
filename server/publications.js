@@ -28,12 +28,12 @@ Meteor.publish('products', function(searchString) {
 
   if (typeof searchString === 'string' && searchString.length) {
     selector.$or = [{
-      name_brand:{
+      name:{
         $regex: `.*${searchString}.*`,
         $options : 'i'
       }
     },{
-      name_generic:{
+      name:{
         $regex: `.*${searchString}.*`,
         $options : 'i'
       }

@@ -27,7 +27,7 @@ export default class AddProductsCtrl extends Controller {
       _.each(products, (product)=> {
         product._id == item._id ? found = true : null;
       });
-      if(!found && (item.name_brand.match(new RegExp(criteria,'gi')) || item.name_generic.match(new RegExp(criteria,'gi')))){
+      if(!found && (item.name.match(new RegExp(criteria,'gi')))){
         return item;
       }else{
         return null;

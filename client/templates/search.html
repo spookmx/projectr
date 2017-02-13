@@ -17,11 +17,8 @@
       <div class="card" ng-repeat="product in search.products">
         <div class="item">
           <h2>
-            {{product.name_brand}}
+            {{product.name}}
           </h2>
-          <p>
-            {{product.name_generic}}
-          </p>
           <search-product-reps product="product" location="search.$rootScope.selectedLocation"></search-product-reps>
         </div>
       </div>

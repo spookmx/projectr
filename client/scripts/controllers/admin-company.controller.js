@@ -40,6 +40,27 @@ export default class AdminCompanyCtrl extends Controller {
     }
   }
 
+  deleteCompany(){
+    this.$ionicPopup.show({
+      template: 'This company will be removed from all portfolios and deleted from the application. Do you want to proceed?',
+      title: 'Delete Company',
+      subTitle: '',
+      buttons: [
+        { text: 'No' },
+        {
+          text: '<b>Yes</b>',
+          type: 'button-positive',
+          onTap: (e)=> {
+            this.callMethod('adminDeleteCompany', this.companyId, (err, result) => {
+              if (err) return this.handleError(err);
+              this.$state.go('tab.admin-portfolio');
+            });
+          }
+        }
+      ]
+    });
+  }
+
   showAddProductModal(){
     this.AdminProduct.showModal(this.companyId);
   }
@@ -65,4 +86,4 @@ export default class AdminCompanyCtrl extends Controller {
 }
 
 AdminCompanyCtrl.$name = 'AdminCompanyCtrl';
-AdminCompanyCtrl.$inject = ['AdminProduct', 'AdminCompany', '$ionicPopup', '$log', '$scope', '$stateParams'];
+AdminCompanyCtrl.$inject = ['AdminProduct', 'AdminCompany', '$ionicPopup', '$log', '$scope', '$stateParams', '$state'];

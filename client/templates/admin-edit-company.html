@@ -27,7 +27,14 @@
          </label>
       </div>
       <div>
-        <button class="button button-block button-positive" ng-click="adminCompany.saveAdminCompanyModal()">Save</button>
+        <div class="item button-bar">
+          <button class="button button-outline button-block button-assertive" ng-disabled="adminCompany.products.length > 0" ng-click="adminCompany.deleteCompany()">
+            Delete
+          </button>
+          <button class="button button-outline button-block button-positive" ng-click="adminCompany.saveAdminCompanyModal()">
+            Save
+          </button>
+        </div>
       </div>
 
     </div>

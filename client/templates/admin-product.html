@@ -53,6 +53,11 @@
            </div>
          </label>
       </div>
+      <div ng-if="adminProduct.productId" class="item">
+        <a class="button button-outline button-block button-assertive" ng-click="adminProduct.deleteProduct()">
+          <i class="icon ion-trash-b"></i> Delete Product
+        </a>
+      </div>
     </div>
 
   </ion-content>
