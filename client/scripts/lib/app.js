@@ -67,6 +67,14 @@ import AdminCompanyService from '../services/admin-company.service';
 import AdminProductCtrl from '../controllers/admin-product.controller';
 import AdminProductService from '../services/admin-product.service';
 
+import AdminTerritoriesCtrl from '../controllers/admin-territories.controller';
+
+import AdminStateCtrl from '../controllers/admin-state.controller';
+import AdminStateService from '../services/admin-state.service';
+
+import AdminCityCtrl from '../controllers/admin-city.controller';
+import AdminCityService from '../services/admin-city.service';
+
 import RoutesConfig from '../routes';
 
 const App = 'Projectr';
@@ -115,6 +123,11 @@ new Loader(App)
   .load(AdminCompanyService)
   .load(AdminProductCtrl)
   .load(AdminProductService)
+  .load(AdminTerritoriesCtrl)
+  .load(AdminStateCtrl)
+  .load(AdminStateService)
+  .load(AdminCityCtrl)
+  .load(AdminCityService)
   .load(RoutesConfig);
 
 if (Meteor.isCordova) {

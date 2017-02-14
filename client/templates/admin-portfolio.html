@@ -8,10 +8,16 @@
       <label class="item item-input-inset">
         <input type="text" placeholder="Search..." ng-model="adminPortfolio.searchText">
       </label>
-      <div class="item item-divider">
+      <div class="item item-divider" ng-if="adminPortfolio.inactiveCompanies.length">
+        Inactive
+      </div>
+      <a ng-repeat="company in adminPortfolio.inactiveCompanies | filter:adminPortfolio.searchText" class="item" href="#/tab/admin-company/{{company._id}}">
+        {{ company.name }}
+      </a>
+      <div class="item item-divider" ng-if="adminPortfolio.activeCompanies.length">
         Active
       </div>
-      <a ng-repeat="company in adminPortfolio.companies | filter:adminPortfolio.searchText" class="item" href="#/tab/admin-company/{{company._id}}">
+      <a ng-repeat="company in adminPortfolio.activeCompanies | filter:adminPortfolio.searchText" class="item" href="#/tab/admin-company/{{company._id}}">
         {{ company.name }}
       </a>
     </div>

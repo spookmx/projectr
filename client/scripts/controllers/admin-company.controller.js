@@ -15,9 +15,18 @@ export default class AdminCompanyCtrl extends Controller {
         company() {
           return Companies.findOne({_id: this.companyId});
         },
-        products() {
-          return Products.find({company: this.companyId});
+        activeProducts() {
+          return Products.find({
+            company: this.companyId,
+            active: true
+          });
         },
+        inactiveProducts() {
+          return Products.find({
+            company: this.companyId,
+            active: false
+          });
+        }
       });
       this.title = "Update "+this.company.name;
     }else{

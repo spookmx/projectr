@@ -13,7 +13,9 @@ export default class AddCompanyCtrl extends Controller {
 
     this.helpers({
       companies() {
-        return Companies.find({});
+        return Companies.find({
+          active: true
+        });
       },
       userCompanies(){
         return Meteor.user().companies;

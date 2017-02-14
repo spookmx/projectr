@@ -14,7 +14,11 @@ export default class AddStateCtrl extends Controller {
 
     this.helpers({
       states() {
-        return States.find({});
+        return States.find({
+          active: true
+        },{
+          sort: { name: 1 }
+        });
       },
       userStates(){
         return Meteor.user().states;

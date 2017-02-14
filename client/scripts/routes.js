@@ -7,6 +7,8 @@ import profileTerritoriesTemplateUrl from '../templates/profile-territories.html
 import profileAccountTemplateUrl from '../templates/profile-account.html';
 import adminPortfolioTemplateUrl from '../templates/admin-portfolio.html';
 import adminEditCompanyTemplateUrl from '../templates/admin-edit-company.html';
+import adminTerritoriesTemplateUrl from '../templates/admin-territories.html';
+import adminEditStateTemplateUrl from '../templates/admin-edit-state.html';
 import tabsTemplateUrl from '../templates/tabs.html';
 
 export default class RoutesConfig extends Config {
@@ -78,6 +80,24 @@ export default class RoutesConfig extends Config {
           'tab-profile': {
             templateUrl: adminEditCompanyTemplateUrl,
             controller: 'AdminCompanyCtrl as adminCompany'
+          }
+        }
+      })
+      .state('tab.admin-territories', {
+        url: '/admin-territories',
+        views: {
+          'tab-profile': {
+            templateUrl: adminTerritoriesTemplateUrl,
+            controller: 'AdminTerritoriesCtrl as adminTerritories'
+          }
+        }
+      })
+      .state('tab.admin-state', {
+        url: '/admin-state/:stateId',
+        views: {
+          'tab-profile': {
+            templateUrl: adminEditStateTemplateUrl,
+            controller: 'AdminStateCtrl as adminState'
           }
         }
       })

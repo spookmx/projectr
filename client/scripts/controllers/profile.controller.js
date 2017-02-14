@@ -22,7 +22,12 @@ export default class ProfileCtrl extends Controller {
   }
   login(){
     this.loading(true);
-    Meteor.loginWithPassword(this.loginForm.email, this.loginForm.password, this.loading(false));
+    Meteor.loginWithPassword(this.loginForm.email, this.loginForm.password, (error)=>{
+      if(error){
+        console.log(error);
+      }
+      this.loading(false)
+    });
   }
   forgotPassword(){
     //ToDo

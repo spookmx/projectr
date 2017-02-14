@@ -13,7 +13,10 @@ export default class AddProductsCtrl extends Controller {
 
     this.helpers({
       products() {
-        return Products.find({"company": this.AddProducts.scope.companyId});
+        return Products.find({
+          company: this.AddProducts.scope.companyId,
+          active: true
+        });
       },
       userProducts(){
         return Meteor.user().products;

@@ -1,35 +1,39 @@
 import { Accounts } from 'meteor/accounts-base';
 import { Controller } from 'angular-ecmascript/module-helpers';
-import { Companies } from '../../../lib/collections';
+import { States } from '../../../lib/collections';
 
-export default class AdminPortfolioCtrl extends Controller {
+export default class AdminTerritoriesCtrl extends Controller {
   constructor() {
     super(...arguments);
 
     this.searchText = '';
 
     this.subscribe('users', () => []);
-    this.subscribe('companies');
+    this.subscribe('states');
 
     this.helpers({
       user() {
         return Meteor.users.findOne({_id:Meteor.userId()});
       },
-      activeCompanies() {
-        return Companies.find({
+      activeStates() {
+        return States.find({
           active: true
+        },{
+          sort: { name: 1 }
         });
       },
-      inactiveCompanies() {
-        return Companies.find({
+      inactiveStates() {
+        return States.find({
           active: false
+        },{
+          sort: { name: 1 }
         });
       }
     });
   }
 
-  showAddCompanyModal(){
-    this.AdminCompany.showModal();
+  showAddStateModal(){
+    this.AdminState.showModal();
   }
 
   loading(show){
@@ -38,5 +42,5 @@ export default class AdminPortfolioCtrl extends Controller {
 
 }
 
-AdminPortfolioCtrl.$name = 'AdminPortfolioCtrl';
-AdminPortfolioCtrl.$inject = ['AdminCompany', '$scope', '$state', '$ionicLoading', '$ionicModal', '$log'];
+AdminTerritoriesCtrl.$name = 'AdminTerritoriesCtrl';
+AdminTerritoriesCtrl.$inject = ['AdminState', '$scope', '$state', '$ionicLoading', '$ionicModal', '$log'];

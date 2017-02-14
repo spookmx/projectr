@@ -13,7 +13,12 @@ export default class AddCitiesCtrl extends Controller {
 
     this.helpers({
       cities() {
-        return Cities.find({"state": this.AddCities.scope.stateId});
+        return Cities.find({
+          state: this.AddCities.scope.stateId,
+          active: true
+        },{
+          sort: { name: 1 }
+        });
       },
       userCities(){
         return Meteor.user().cities;

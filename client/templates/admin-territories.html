@@ -1,0 +1,26 @@
+<ion-view view-title="Manage Territories">
+  <ion-content padding="true" >
+    <a class="button button-outline button-block button-positive" ng-click="adminTerritories.showAddStateModal()">
+      <i class="icon ion-plus"></i> Add State
+    </a>
+
+    <div class="list">
+      <label class="item item-input-inset">
+        <input type="text" placeholder="Search..." ng-model="adminTerritories.searchText">
+      </label>
+      <div class="item item-divider" ng-if="adminTerritories.inactiveStates.length">
+        Inactive
+      </div>
+      <a ng-repeat="state in adminTerritories.inactiveStates | filter:adminTerritories.searchText" class="item" href="#/tab/admin-state/{{state._id}}">
+        {{ state.name }}
+      </a>
+      <div class="item item-divider" ng-if="adminTerritories.activeStates.length">
+        Active
+      </div>
+      <a ng-repeat="state in adminTerritories.activeStates | filter:adminTerritories.searchText" class="item" href="#/tab/admin-state/{{state._id}}">
+        {{ state.name }}
+      </a>
+    </div>
+
+  </ion-content>
+</ion-view>

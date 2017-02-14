@@ -27,20 +27,17 @@ Meteor.startup(() => {
   //Add products
   if (Products.find().count() === 0) {
     const products = [{
-      'name_brand': 'Synthroid',
-      'name_generic': 'Levothyroxine',
+      'name': 'Synthroid',
       'description': 'It can treat hypothyroidism. It can also treat an enlarged thyroid gland and thyroid cancer.',
       'type': ['drug'],
       'website':'https://www.synthroid.com/',
     }, {
-      'name_brand': 'Tirosint',
-      'name_generic': 'Levothyroxine',
+      'name': 'Tirosint',
       'description': 'Tirosint (levothyroxine sodium) is a unique hypothyroidism treatment gel cap. It contains only 4 ingredients with no additives to interfere with drug efficacy.',
       'type': ['drug'],
       'website':'https://www.tirosint.com/',
     }, {
-      'name_brand': 'Unithroid',
-      'name_generic': 'Levothyroxine',
+      'name': 'Unithroid',
       'description': 'It can treat hypothyroidism. It can also treat an enlarged thyroid gland and thyroid cancer.',
       'type': ['drug'],
       'website':'https://www.unithroid.com/',
@@ -269,91 +266,91 @@ Meteor.startup(() => {
   if (Cities.find().count() === 0) {
     const cities = [{
         name: 'Amarillo',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Arlington',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Austin',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Beaumont',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'College Station',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Corpus Christi',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Dallas',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'El Paso',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Ft. Worth',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Grand Prarie',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Houston',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Killeen',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Laredo',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Lewisville',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Longview',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Lubbock',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'McAllen',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Midland',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Odessa',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Pasadena',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Pearland',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Plainview',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Plano',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Round Rock',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'San Antonio',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Temple',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'The Woodlands',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Tyler',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }, {
         name: 'Waco',
-        state: 'Texas'
+        state: '39fpwZu4NkBdG8zdc'
     }];
 
     cities.forEach((city) => {

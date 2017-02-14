@@ -1,0 +1,38 @@
+<ion-modal-view ng-controller="AdminStateCtrl as adminState">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="adminState.hideAdminStateModal()">Cancel</button>
+    </div>
+    <h1 class="title">{{ adminState.title }}</h1>
+    <div class="buttons">
+      <button class="button button-positive" ng-click="adminState.saveAdminStateModal()">Save</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <div class="padding badge" ng-if="adminState.state.lastUpdatedAt">
+      <i class="icon ion-calendar"></i> Last Updated: {{ adminState.state.lastUpdatedAt | date:'medium' }}
+    </div>
+
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Name</span>
+        <input type="text" ng-model="adminState.state.name" placeholder="Name">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Abbreviation</span>
+        <input type="text" ng-model="adminState.state.abbreviation" placeholder="Abbreviation">
+      </label>
+      <div class="item item-toggle">
+         Active
+         <label class="toggle toggle-positive">
+           <input type="checkbox" ng-model="adminState.state.active">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-modal-view>

@@ -1,0 +1,39 @@
+<ion-modal-view ng-controller="AdminCityCtrl as adminCity">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="adminCity.hideAdminCityModal()">Cancel</button>
+    </div>
+    <h1 class="title">{{ adminCity.title }}</h1>
+    <div class="buttons">
+      <button class="button button-positive" ng-click="adminCity.saveAdminCityModal()">Save</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+    <div class="padding badge" ng-if="adminCity.city.lastUpdatedAt">
+      <i class="icon ion-calendar"></i> Last Updated: {{ adminCity.city.lastUpdatedAt | date:'medium' }}
+    </div>
+
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Name</span>
+        <input type="text" ng-model="adminCity.city.name" placeholder="Name">
+      </label>
+      <div class="item item-toggle">
+         Active
+         <label class="toggle toggle-positive">
+           <input type="checkbox" ng-model="adminCity.city.active">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </div>
+      <div ng-if="adminCity.cityId" class="item">
+        <a class="button button-outline button-block button-assertive" ng-click="adminCity.deleteCity()">
+          <i class="icon ion-trash-b"></i> Delete City
+        </a>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-modal-view>

@@ -50,10 +50,16 @@
       </div>
 
       <div class="list">
-        <div class="item item-divider">
+        <div class="item item-divider" ng-if="adminCompany.inactiveProducts.length">
+          Inactive
+        </div>
+        <a ng-repeat="product in adminCompany.inactiveProducts | filter:adminCompany.searchText" class="item" ng-click="adminCompany.editProduct(product._id)">
+          {{ product.name }}
+        </a>
+        <div class="item item-divider" ng-if="adminCompany.activeProducts.length">
           Active
         </div>
-        <a ng-repeat="product in adminCompany.products | filter:adminCompany.searchText" class="item" ng-click="adminCompany.editProduct(product._id)">
+        <a ng-repeat="product in adminCompany.activeProducts | filter:adminCompany.searchText" class="item" ng-click="adminCompany.editProduct(product._id)">
           {{ product.name }}
         </a>
       </div>

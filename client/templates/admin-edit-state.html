@@ -1,0 +1,65 @@
+<ion-view view-title="{{ adminState.title }}">
+  <ion-content padding="true">
+    <div class="padding badge" ng-if="adminState.state.lastUpdatedAt">
+      <i class="icon ion-calendar"></i> Last Updated: {{ adminState.state.lastUpdatedAt | date:'medium' }}
+    </div>
+
+    <div class="list">
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Name</span>
+        <input type="text" ng-model="adminState.state.name" placeholder="Name">
+      </label>
+      <label class="item item-input item-floating-label">
+        <span class="input-label">Abbreviation</span>
+        <input type="text" ng-model="adminState.state.abbreviation" placeholder="Abbreviation">
+      </label>
+      <div class="item item-toggle">
+         Active
+         <label class="toggle toggle-positive">
+           <input type="checkbox" ng-model="adminState.state.active">
+           <div class="track">
+             <div class="handle"></div>
+           </div>
+         </label>
+      </div>
+      <div>
+        <div class="item button-bar">
+          <button class="button button-outline button-block button-assertive" ng-disabled="adminState.activeCities.length || adminState.inactiveCities.length > 0" ng-click="adminState.deleteState()">
+            Delete
+          </button>
+          <button class="button button-outline button-block button-positive" ng-click="adminState.saveAdminStateModal()">
+            Save
+          </button>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="card" ng-if="adminState.state._id">
+      <div class="item item-divider">
+        Cities
+      </div>
+      <div class="padding">
+        <a class="button button-outline button-block button-positive" ng-click="adminState.showAddCityModal()">
+          <i class="icon ion-plus"></i> Add City
+        </a>
+      </div>
+
+      <div class="list">
+        <div class="item item-divider" ng-if="adminState.inactiveCities.length">
+          Inactive
+        </div>
+        <a ng-repeat="city in adminState.inactiveCities | filter:adminState.searchText" class="item" ng-click="adminState.editCity(city._id)">
+          {{ city.name }}
+        </a>
+        <div class="item item-divider" ng-if="adminState.activeCities.length">
+          Active
+        </div>
+        <a ng-repeat="city in adminState.activeCities | filter:adminState.searchText" class="item" ng-click="adminState.editCity(city._id)">
+          {{ city.name }}
+        </a>
+      </div>
+    </div>
+
+  </ion-content>
+</ion-modal-view>
