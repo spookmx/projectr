@@ -11,15 +11,15 @@
 
   <ion-content>
     <label class="item item-input">
-      <input type="text" placeholder="Search..." ng-model="searchSelectLocation.searchText">
-      <a ng-if="searchSelectLocation.searchText != ''" on-touch="searchSelectLocation.searchText=''">
+      <input type="text" placeholder="Search..." ng-model="searchSelectLocation.searchText.name">
+      <a ng-if="searchSelectLocation.searchText.name != ''" on-touch="searchSelectLocation.searchText.name=''">
          <i class="icon ion-ios-close placeholder-icon"></i>
       </a>
     </label>
 
     <ion-list>
-      <ion-radio ng-repeat="city in searchSelectLocation.cities | filter:searchSelectLocation.filterCities(searchSelectLocation.searchText, searchSelectLocation.userCities)" ng-model="searchSelectLocation.choice" ng-value="city">
-        {{city.name}}, <show-state-abbrev state="city.state"></show-state-abbrev>
+      <ion-radio ng-repeat="place in searchSelectLocation.places | filter:searchSelectLocation.searchText" ng-model="searchSelectLocation.choice" ng-value="place">
+        {{place.name}}<span ng-if="place.state" >, <show-state-abbrev state="place.state"></show-state-abbrev></span>
       </ion-radio>
     </ion-list>
 

@@ -13,20 +13,26 @@
       <input class="item-input-button" type="text" placeholder="Search by city or state" ng-model="search.$rootScope.selectedLocation.label">
     </label>
 
-    <div class="list list-mobile" ng-if="search.searchText != ''">
-      <div class="card" ng-repeat="product in search.products">
+    <button class="button button-full button-positive" ng-click="search.search()" ng-enabled="search.$rootScope.selectedLocation.label">
+      Search
+    </button>
+
+    <div class="list list-mobile">
+      <div class="card" ng-repeat="product in search.products | orderBy:'name'">
         <div class="item">
+          <span class="item-note">
+            <show-product-company company="product.company"></show-product-company>
+          </span>
+          
           <h2>
             {{product.name}}
           </h2>
+
           <search-product-reps product="product" location="search.$rootScope.selectedLocation"></search-product-reps>
         </div>
+
       </div>
     </div>
-
-    <button class="button button-full button-positive">
-      Search
-    </button>
 
     <!-- <div class="list list-mobile" ng-if="search.searchText == ''">
       <div class="card">

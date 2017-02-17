@@ -22,7 +22,8 @@ export default class SearchProductRepsCtrl extends Controller {
     this.loading = false;
     if(result){
       this.result = true;
-      this.legend = result;
+      this.legend = result.legend;
+      result.hospitals ? this.hospitals = result.hospitals : null;
     }
   }
 

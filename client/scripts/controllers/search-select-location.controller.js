@@ -14,11 +14,12 @@ export default class SearchSelectLocationCtrl extends Controller {
     this.subscribe('states');
 
     this.helpers({
-      cities() {
-        return Cities.find();
-      },
-      states() {
-        return States.find();
+      places() {
+        let cities = Cities.find().fetch();
+        let states = States.find().fetch();
+        let places = cities.concat(states);
+        places = _.sortBy(places, 'name');
+        return places;
       },
       stateSelected() {
         return States.findOne({_id:this.getReactively('choice.state')});
@@ -41,15 +42,15 @@ export default class SearchSelectLocationCtrl extends Controller {
   }
 
   selectSearchSelectLocationModal() {
-    //SaveInCookie
-    //this.$rootScope.searchLocation =
     if(this.choice.state){
       this.selectedLocation = {label:this.choice.name+', '+this.stateSelected.abbreviation, cityName:this.choice.name, stateId:this.choice.state, cityId:this.choice._id, stateName:this.stateSelected.name, stateAbbrev:this.stateSelected.abbreviation};
     }else{
-      this.selectedLocation = {label:'Austin, TX', cityName:null, stateId:this.choice.state, cityId:null};
+      this.selectedLocation = {label:this.choice.name, cityName:null, stateId:this.choice._id, cityId:null, stateName:this.choice.name, stateAbbrev:this.choice.abbreviation};
     }
+    let storage = window.localStorage;
+    storage.setItem('location', JSON.stringify(this.selectedLocation));
     this.$rootScope.selectedLocation = this.selectedLocation;
-    
+
     this.hideSearchSelectLocationModal()
   }
 

@@ -54,6 +54,9 @@ import SearchSelectLocationService from '../services/search-select-location.serv
 import ShowStateAbbrevDirective from '../directives/show-state-abbrev.directive';
 import ShowStateAbbrevCtrl from '../controllers/show-state-abbrev.controller';
 
+import ShowProductCompanyDirective from '../directives/show-product-company.directive';
+import ShowProductCompanyCtrl from '../controllers/show-product-company.controller';
+
 import ProfileAccountCtrl from '../controllers/profile-account.controller';
 
 import EditCityCtrl from '../controllers/edit-city.controller';
@@ -115,6 +118,8 @@ new Loader(App)
   .load(SearchSelectLocationCtrl)
   .load(ShowStateAbbrevDirective)
   .load(ShowStateAbbrevCtrl)
+  .load(ShowProductCompanyDirective)
+  .load(ShowProductCompanyCtrl)
   .load(ProfileAccountCtrl)
   .load(EditCityCtrl)
   .load(EditCityService)

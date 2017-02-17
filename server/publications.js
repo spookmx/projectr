@@ -21,26 +21,8 @@ Meteor.publish('users', function() {
   });
 });
 
-Meteor.publish('products', function(searchString) {
-  const selector = {};
-
-  // filters.length ? selector.type = { '$in': filters } : null;
-
-  if (typeof searchString === 'string' && searchString.length) {
-    selector.$or = [{
-      name:{
-        $regex: `.*${searchString}.*`,
-        $options : 'i'
-      }
-    },{
-      name:{
-        $regex: `.*${searchString}.*`,
-        $options : 'i'
-      }
-    }];
-  }
-
-  return Products.find(selector);
+Meteor.publish('products', function() {
+  return Products.find({});
 });
 
 Meteor.publish('companies', function() {

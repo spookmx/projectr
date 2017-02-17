@@ -9,6 +9,7 @@
     <button class="button button-clear button-positive">
       <i class="icon ion-person"></i> {{searchProductReps.legend}}
     </button>
+    <p ng-if="searchProductReps.hospitals">{{searchProductReps.hospitals}}</p>
   </div>
 
   <div ng-if="!searchProductReps.loading && !searchProductReps.result">

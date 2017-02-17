@@ -1,18 +1,22 @@
 import { Controller } from 'angular-ecmascript/module-helpers';
-import { Products } from '../../../lib/collections';
 
 export default class SearchCtrl extends Controller {
   constructor() {
     super(...arguments);
 
     this.searchText = '';
-    this.subscribe('products', () => [this.getReactively('searchText'), ['drug']]);
-    this.helpers({
-      products() {
-        return Products.find({});
-      }
+    let storage = window.localStorage;
+    let selectedLocation = JSON.parse(storage.getItem('location'));
+    selectedLocation.label ? this.$rootScope.selectedLocation = selectedLocation : null;
+  }
+
+  search(){
+    this.callMethod('search', this.searchText, (err, result) => {
+      if (err) return this.handleError(err);
+      this.products = result;
     });
   }
+
   showSearchSelectLocationModal(){
     this.SearchSelectLocation.showModal(this.companyId);
   }
