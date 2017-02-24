@@ -78,6 +78,8 @@ import AdminStateService from '../services/admin-state.service';
 import AdminCityCtrl from '../controllers/admin-city.controller';
 import AdminCityService from '../services/admin-city.service';
 
+import ProductCtrl from '../controllers/product.controller';
+
 import RoutesConfig from '../routes';
 
 const App = 'Projectr';
@@ -133,6 +135,7 @@ new Loader(App)
   .load(AdminStateService)
   .load(AdminCityCtrl)
   .load(AdminCityService)
+  .load(ProductCtrl)
   .load(RoutesConfig);
 
 if (Meteor.isCordova) {

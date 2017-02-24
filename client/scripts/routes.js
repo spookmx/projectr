@@ -9,6 +9,7 @@ import adminPortfolioTemplateUrl from '../templates/admin-portfolio.html';
 import adminEditCompanyTemplateUrl from '../templates/admin-edit-company.html';
 import adminTerritoriesTemplateUrl from '../templates/admin-territories.html';
 import adminEditStateTemplateUrl from '../templates/admin-edit-state.html';
+import productTemplateUrl from '../templates/product.html';
 import tabsTemplateUrl from '../templates/tabs.html';
 
 export default class RoutesConfig extends Config {
@@ -98,6 +99,15 @@ export default class RoutesConfig extends Config {
           'tab-profile': {
             templateUrl: adminEditStateTemplateUrl,
             controller: 'AdminStateCtrl as adminState'
+          }
+        }
+      })
+      .state('tab.product', {
+        url: '/product/:productId',
+        views: {
+          'tab-search': {
+            templateUrl: productTemplateUrl,
+            controller: 'ProductCtrl as product'
           }
         }
       })

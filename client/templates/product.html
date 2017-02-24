@@ -1,0 +1,12 @@
+<ion-view view-title="{{ product.selectedProduct.name }}">
+  <ion-content padding="true">
+    <span class="item-note">
+      {{product.selectedProduct.company}}
+      <show-product-company company="{{product.selectedProduct.company}}"></show-product-company>
+    </span>
+    <h2>{{product.selectedProduct.name}}</h2>
+    <p>
+      {{product.selectedProduct.description}}
+    </p>
+  </ion-content>
+</ion-modal-view>

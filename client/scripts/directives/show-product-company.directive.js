@@ -12,7 +12,7 @@ export default class ShowProductCompanyDirective extends Directive {
     this.bindToController = true;
     this.replace = true;
     this.scope = {
-      company:'<'
+      company:'@'
     };
   }
 
