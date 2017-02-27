@@ -24,6 +24,7 @@ export default class SearchProductRepsCtrl extends Controller {
       this.result = true;
       this.legend = result.legend;
       result.hospitals ? this.hospitals = result.hospitals : null;
+      result.services ? this.services = result.services : null;
     }
   }
 

@@ -1,12 +1,33 @@
-<ion-view view-title="{{ product.selectedProduct.name }}">
+<ion-view>
+  <ion-nav-title>{{ product.selectedProduct.name }}</ion-nav-title>
   <ion-content padding="true">
     <span class="item-note">
-      {{product.selectedProduct.company}}
-      <show-product-company company="{{product.selectedProduct.company}}"></show-product-company>
+      <show-product-company ng-if="product.selectedProduct.company" company="{{product.selectedProduct.company}}"></show-product-company>
     </span>
     <h2>{{product.selectedProduct.name}}</h2>
     <p>
       {{product.selectedProduct.description}}
     </p>
+
+    <div ng-if="product.selectedProduct.copayInformation" class="card">
+      <div class="item item-text-wrap">
+        <h2 class="radiant">Copay Information</h2>
+        <p>
+          {{ product.selectedProduct.copayInformation }}
+        </p>
+      </div>
+      <a class="item item-icon-right positive" href="#">
+        <i class="icon ion-android-open"></i>
+        Copay Website
+      </a>
+    </div>
+
+    <div class="card">
+      <div class="item item-text-wrap">
+        <h2>Representatives</h2>
+        
+      </div>
+    </div>
+
   </ion-content>
 </ion-modal-view>

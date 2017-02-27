@@ -8,7 +8,6 @@ export default class ShowProductCompanyCtrl extends Controller {
     super(...arguments);
 
     this.subscribe('companies');
-    console.log(this.company);
     this.helpers({
       companySelected(){
         return Companies.findOne({_id:this.company});

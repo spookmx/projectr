@@ -10,6 +10,13 @@
       <i class="icon ion-person"></i> {{searchProductReps.legend}}
     </button>
     <p ng-if="searchProductReps.hospitals">{{searchProductReps.hospitals}}</p>
+    <p ng-if="searchProductReps.services">
+      <span ng-if="searchProductReps.services.s" class="padding-right balanced"><i class="icon ion-stop"></i> Samples </span>
+      <span ng-if="searchProductReps.services.m" class="padding-right royal"><i class="icon ion-stop"></i> Inservice Meal </span>
+      <span ng-if="searchProductReps.services.i" class="padding-right calm"><i class="icon ion-stop"></i> Stock Inventory </span>
+      <span ng-if="searchProductReps.services.c" class="padding-right dark"><i class="icon ion-stop"></i> Case Coverage </span>
+      <span ng-if="searchProductReps.product.copayInformation" class="padding-right radiant"><i class="icon ion-stop"></i> Copay Assistance </span>
+    </p>
   </div>
 
   <div ng-if="!searchProductReps.loading && !searchProductReps.result">
