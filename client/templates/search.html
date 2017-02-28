@@ -19,11 +19,11 @@
 
     <div class="list">
       <a class="item" ng-repeat="product in search.products | orderBy:'name'" href="#/tab/product/{{product._id}}">
-        {{product.name}}
+        <strong>{{product.name}}</strong>
         <span class="item-note">
-          <show-product-company company="product.company"></show-product-company>
+          <show-product-company company="{{product.company}}"></show-product-company>
         </span>
-        <search-product-reps product="product" location="search.$rootScope.selectedLocation"></search-product-reps>
+        <search-product-reps product="product"></search-product-reps>
       </a>
     </div>
 

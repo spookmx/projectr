@@ -1,0 +1,31 @@
+<div class="padding">
+  <div ng-if="productReps.reps.length == 0">
+    No reps found in {{ productReps.location.label }}
+  </div>
+  <div ng-if="productReps.reps.length == 1">
+    <strong>{{productReps.reps[0].givenName}} {{productReps.reps[0].familyName}}</strong>
+    <p ng-if="productReps.reps">
+      <span ng-if="productReps._.findWhere(productReps.reps[0].products, {_id: productReps.product._id}).s" class="padding-right balanced"><i class="icon ion-stop"></i> Samples </span>
+      <span ng-if="productReps._.findWhere(productReps.reps[0].products, {_id: productReps.product._id}).m" class="padding-right royal"><i class="icon ion-stop"></i> Inservice Meal </span>
+      <span ng-if="productReps._.findWhere(productReps.reps[0].products, {_id: productReps.product._id}).i" class="padding-right calm"><i class="icon ion-stop"></i> Stock Inventory </span>
+      <span ng-if="productReps._.findWhere(productReps.reps[0].products, {_id: productReps.product._id}).c" class="padding-right dark"><i class="icon ion-stop"></i> Case Coverage </span>
+    </p>
+  </div>
+  <div ng-if="productReps.reps.length > 1">
+    <ion-list>
+      <ion-radio ng-model="choice" ng-value="'A'">
+        <h2>
+          Choose A
+        </h2>
+        <p>
+          More information here
+        </p>
+      </ion-radio>
+      <ion-radio ng-model="choice" ng-value="'B'">Choose B
+        <p>
+          Here goes more data
+        </p>
+      </ion-radio>
+    </ion-list>
+  </div>
+</div>

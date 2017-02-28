@@ -7,7 +7,9 @@ export default class SearchProductRepsCtrl extends Controller {
     super(...arguments);
 
     this.loading = true;
-    this.result = false
+    this.result = false;
+
+    this.location = this.$rootScope.selectedLocation;
 
     this.helpers({
     });
@@ -40,4 +42,4 @@ export default class SearchProductRepsCtrl extends Controller {
 }
 
 SearchProductRepsCtrl.$name = 'SearchProductRepsCtrl';
-SearchProductRepsCtrl.$inject = ['$ionicPopup', '$log', '$scope'];
+SearchProductRepsCtrl.$inject = ['$ionicPopup', '$log', '$scope', '$rootScope'];

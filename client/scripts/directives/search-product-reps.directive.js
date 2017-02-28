@@ -12,8 +12,7 @@ export default class SearchProductRepsDirective extends Directive {
     this.bindToController = true;
     this.replace = true;
     this.scope = {
-      product:'<',
-      location:'<'
+      product:'<'
     };
   }
 

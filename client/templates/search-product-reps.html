@@ -5,11 +5,11 @@
     </button>
   </div>
 
-  <div ng-if="!searchProductReps.loading && searchProductReps.result">
-    <button class="button button-clear button-positive">
+  <div ng-if="!searchProductReps.loading && searchProductReps.result" class="padding-top">
+    <h2>
       <i class="icon ion-person"></i> {{searchProductReps.legend}}
-    </button>
-    <p ng-if="searchProductReps.hospitals">{{searchProductReps.hospitals}}</p>
+    </h2>
+
     <p ng-if="searchProductReps.services">
       <span ng-if="searchProductReps.services.s" class="padding-right balanced"><i class="icon ion-stop"></i> Samples </span>
       <span ng-if="searchProductReps.services.m" class="padding-right royal"><i class="icon ion-stop"></i> Inservice Meal </span>
