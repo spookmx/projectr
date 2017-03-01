@@ -7,7 +7,7 @@ export default class SearchCtrl extends Controller {
     this.searchText = '';
     let storage = window.localStorage;
     let selectedLocation = JSON.parse(storage.getItem('location'));
-    selectedLocation.label ? this.$rootScope.selectedLocation = selectedLocation : null;
+    selectedLocation ? this.$rootScope.selectedLocation = selectedLocation : null;
   }
 
   search(){

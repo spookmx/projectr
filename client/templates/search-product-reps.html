@@ -1,5 +1,5 @@
 <div>
-  <div ng-if="searchProductReps.loading">
+  <div ng-if="searchProductReps.loading"  class="padding-top">
     <button class="button button-clear button-light">
       <i class="icon ion-person-stalker"></i> Finding Reps...
     </button>
@@ -10,7 +10,7 @@
       <i class="icon ion-person"></i> {{searchProductReps.legend}}
     </h2>
 
-    <p ng-if="searchProductReps.services">
+    <p ng-if="searchProductReps.services || searchProductReps.product.copayInformation">
       <span ng-if="searchProductReps.services.s" class="padding-right balanced"><i class="icon ion-stop"></i> Samples </span>
       <span ng-if="searchProductReps.services.m" class="padding-right royal"><i class="icon ion-stop"></i> Inservice Meal </span>
       <span ng-if="searchProductReps.services.i" class="padding-right calm"><i class="icon ion-stop"></i> Stock Inventory </span>
@@ -19,10 +19,13 @@
     </p>
   </div>
 
-  <div ng-if="!searchProductReps.loading && !searchProductReps.result">
-    <button class="button button-clear button-stable">
+  <div ng-if="!searchProductReps.loading && !searchProductReps.result"  class="padding-top">
+    <h2>
       <i class="icon ion-person-add"></i> Request Rep
-    </button>
+    </h2>
+    <p ng-if="searchProductReps.product.copayInformation">
+      <span ng-if="searchProductReps.product.copayInformation" class="padding-right radiant"><i class="icon ion-stop"></i> Copay Assistance </span>
+    </p>
   </div>
 
 </div>

@@ -5,6 +5,7 @@ import { Controller } from 'angular-ecmascript/module-helpers';
 export default class ProductRepsCtrl extends Controller {
   constructor() {
     super(...arguments);
+    this._ = _;
     this.location = this.$rootScope.selectedLocation;
     this.helpers({
     });
@@ -17,6 +18,7 @@ export default class ProductRepsCtrl extends Controller {
 
   handleResponse(result){
     this.reps = result;
+    this.reps.length > 1 ? this.repSelected = this.reps[0]._id : null; 
   }
 
   handleError(err) {
