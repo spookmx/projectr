@@ -9,22 +9,30 @@
       {{product.selectedProduct.description}}
     </p>
 
+    <div class="card">
+      <product-reps ng-if="product.selectedProduct" product="product.selectedProduct"></product-reps>
+    </div>
+
     <div ng-if="product.selectedProduct.copayInformation" class="card">
       <div class="item item-text-wrap">
         <h2 class="radiant">Copay Information</h2>
         <p>
           {{ product.selectedProduct.copayInformation }}
         </p>
+        <div class="row">
+          <div class="col">
+            <button class="button button-small button-block">
+              Learn More
+            </button>
+          </div>
+          <div class="col">
+            <button class="button button-small button-block">
+              Send Info
+            </button>
+          </div>
+        </div>
       </div>
-      <a class="item item-icon-right positive" href="#">
-        <i class="icon ion-android-open"></i>
-        Copay Website
-      </a>
     </div>
-
-    <div class="card">
-      <product-reps ng-if="product.selectedProduct" product="product.selectedProduct"></product-reps>
-    </div>
-
+    
   </ion-content>
 </ion-modal-view>

@@ -11,19 +11,19 @@
       <div class="input-label">
         Select Service
       </div>
-      <select>
+      <select ng-model="productReps.serviceSelected">
         <option ng-if="productReps._.findWhere(productReps.reps[0].products, {_id: productReps.product._id}).s" value="s">Samples</option>
         <option ng-if="productReps._.findWhere(productReps.reps[0].products, {_id: productReps.product._id}).m" value="m">Inservice Meal</option>
         <option ng-if="productReps._.findWhere(productReps.reps[0].products, {_id: productReps.product._id}).i" value="i">Stock Inventory</option>
         <option ng-if="productReps._.findWhere(productReps.reps[0].products, {_id: productReps.product._id}).c" value="c">Case Coverage</option>
       </select>
     </label>
-    <button class="button button-full button-positive" ng-click="productReps.requestService()">
+    <button ng-disabled="!productReps.serviceSelected" class="button button-full button-positive" ng-click="productReps.requestService()">
       Request
     </button>
   </div>
   <div ng-if="productReps.reps.length > 1">
-    <h4>Select Representative</h4>
+    <h4>Choose Representative</h4>
 
     <ion-list>
       <ion-radio ng-repeat="rep in productReps.reps" ng-model="productReps.repSelected" ng-value="rep._id">
@@ -46,14 +46,14 @@
       <div class="input-label">
         Select Service
       </div>
-      <select>
+      <select ng-model="productReps.serviceSelected">
         <option ng-if="productReps._.findWhere(productReps._.findWhere(productReps.reps, {_id: productReps.repSelected}).products, {_id: productReps.product._id}).s" value="s">Samples</option>
         <option ng-if="productReps._.findWhere(productReps._.findWhere(productReps.reps, {_id: productReps.repSelected}).products, {_id: productReps.product._id}).m" value="m">Inservice Meal</option>
         <option ng-if="productReps._.findWhere(productReps._.findWhere(productReps.reps, {_id: productReps.repSelected}).products, {_id: productReps.product._id}).i" value="i">Stock Inventory</option>
         <option ng-if="productReps._.findWhere(productReps._.findWhere(productReps.reps, {_id: productReps.repSelected}).products, {_id: productReps.product._id}).c" value="c">Case Coverage</option>
       </select>
     </label>
-    <button class="button button-full button-positive" ng-click="productReps.requestService()">
+    <button ng-disabled="!productReps.serviceSelected" class="button button-full button-positive" ng-click="productReps.requestService()">
       Request
     </button>
   </div>
