@@ -9,9 +9,10 @@
 
     <label class="item item-input item-select">
       <div class="input-label">
-        Select Service
+        Service
       </div>
       <select ng-model="productReps.serviceSelected">
+        <option disabled selected value> -- Select -- </option>
         <option ng-if="productReps._.findWhere(productReps.reps[0].products, {_id: productReps.product._id}).s" value="s">Samples</option>
         <option ng-if="productReps._.findWhere(productReps.reps[0].products, {_id: productReps.product._id}).m" value="m">Inservice Meal</option>
         <option ng-if="productReps._.findWhere(productReps.reps[0].products, {_id: productReps.product._id}).i" value="i">Stock Inventory</option>
@@ -44,9 +45,10 @@
 
     <label class="item item-input item-select">
       <div class="input-label">
-        Select Service
+        Service
       </div>
       <select ng-model="productReps.serviceSelected">
+        <option disabled selected value> -- Select -- </option>
         <option ng-if="productReps._.findWhere(productReps._.findWhere(productReps.reps, {_id: productReps.repSelected}).products, {_id: productReps.product._id}).s" value="s">Samples</option>
         <option ng-if="productReps._.findWhere(productReps._.findWhere(productReps.reps, {_id: productReps.repSelected}).products, {_id: productReps.product._id}).m" value="m">Inservice Meal</option>
         <option ng-if="productReps._.findWhere(productReps._.findWhere(productReps.reps, {_id: productReps.repSelected}).products, {_id: productReps.product._id}).i" value="i">Stock Inventory</option>

@@ -12,7 +12,7 @@ export default class ProductRepsCtrl extends Controller {
     this.query = {product: this.product, location:this.location};
     this.callMethod('productReps', this.query, (err, result) => {
       if (err) return this.handleError(err);
-      this.handleResponse(result);
+      this.handleProductReps(result);
     });
     this.options = {
       s: 'Sample',
@@ -23,8 +23,8 @@ export default class ProductRepsCtrl extends Controller {
   }
 
   requestService(){
-    let requestPopup = this.$ionicPopup.show({
-      template: '<p>Your representative will recieve a service request, please provide your name and relevant information to process it.</p><input type="text" ng-model="productReps.additionalInfo">',
+    this.requestPopup = this.$ionicPopup.show({
+      template: '<p>Your representative will recieve a service request, please provide the information required to contact you.</p><textarea ng-model="additionalInfo" placeholder="Name, hospital, service, hours, etc..." rows="5"></textarea>',
       title: 'Request '+this.options[this.serviceSelected],
       scope: this.$scope,
       buttons: [
@@ -33,34 +33,36 @@ export default class ProductRepsCtrl extends Controller {
           text: '<b>Request</b>',
           type: 'button-positive',
           onTap: function(e) {
-            if (!this.additionalInfo) {
-              //don't allow the user to close unless he enters wifi password
+            if (!this.scope.additionalInfo) {
               e.preventDefault();
             } else {
-              return this.additionalInfo;
+              return this.scope.additionalInfo;
             }
           }
         }
       ]
     });
-    requestPopup.then(function(res) {
-      console.log('Tapped!', res);
+    this.requestPopup.then((additionalInfo)=>{
+      let request = {
+        requester: this.$rootScope.currentUserId,
+        rep: this.repSelected,
+        product: this.product._id,
+        location: this.location.cityId,
+        service: this.serviceSelected,
+        additionalInfo: additionalInfo
+      };
+      this.callMethod('addRequest', request, (err, result) => {
+        if (err) return this.handleError(err);
+        this.handleAddRequest(result);
+      });
     });
-    let request = {
-      requester: this.$rootScope.currentUserId,
-      rep: this.repSelected,
-      product: this.product._id,
-      location: this.location.cityId,
-      service: this.serviceSelected,
-    };
-    console.log(this.serviceSelected);
-    // this.callMethod('requestService', request, (err, result) => {
-    //   if (err) return this.handleError(err);
-    //   this.handleResponse(result);
-    // });
   }
 
-  handleResponse(result){
+  handleAddRequest(result){
+    this.$timeout(()=>{this.$state.go('tab.requests')} , 0);
+  }
+
+  handleProductReps(result){
     this.reps = result;
     this.reps.length >= 1 ? this.repSelected = this.reps[0]._id : null;
   }
@@ -77,4 +79,4 @@ export default class ProductRepsCtrl extends Controller {
 }
 
 ProductRepsCtrl.$name = 'ProductRepsCtrl';
-ProductRepsCtrl.$inject = ['$ionicPopup', '$log', '$scope', '$rootScope'];
+ProductRepsCtrl.$inject = ['$ionicPopup', '$log', '$scope', '$rootScope', '$state', '$timeout'];

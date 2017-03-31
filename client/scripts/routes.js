@@ -10,6 +10,7 @@ import adminEditCompanyTemplateUrl from '../templates/admin-edit-company.html';
 import adminTerritoriesTemplateUrl from '../templates/admin-territories.html';
 import adminEditStateTemplateUrl from '../templates/admin-edit-state.html';
 import productTemplateUrl from '../templates/product.html';
+import requestsTemplateUrl from '../templates/requests.html';
 import tabsTemplateUrl from '../templates/tabs.html';
 
 export default class RoutesConfig extends Config {
@@ -108,6 +109,15 @@ export default class RoutesConfig extends Config {
           'tab-search': {
             templateUrl: productTemplateUrl,
             controller: 'ProductCtrl as product'
+          }
+        }
+      })
+      .state('tab.requests', {
+        url: '/requests',
+        views: {
+          'tab-requests': {
+            templateUrl: requestsTemplateUrl,
+            controller: 'RequestsCtrl as requests'
           }
         }
       })
