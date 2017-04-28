@@ -1,3 +1,81 @@
 .radiant {
   color: #FFA500;
 }
+.talk-wrapper{
+  border: 0;
+}
+.talk-bubble-in{
+  display: inline-block;
+  position: relative;
+  width: 80%;
+  height: auto;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  background-color: #A4C4FA;
+  float: left;
+}
+.talk-bubble-in p{
+  padding: 1em;
+  text-align: left;
+  line-height: 1.5em;
+  margin: 0em;
+}
+.talk-bubble-in:after{
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: 0px;
+  right: auto;
+  top: auto;
+  bottom: -8px;
+  border: 10px solid;
+  border-color: transparent transparent transparent #A4C4FA;
+}
+.talk-bubble-out{
+  display: inline-block;
+  position: relative;
+  max-width: 80%;
+  height: auto;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  background-color: #DAE7FD;
+  float: right;
+}
+.talk-bubble-out p{
+  padding: 1em;
+  text-align: right;
+  line-height: 1.5em;
+  margin: 0em;
+}
+.talk-bubble-out:after{
+  content: ' ';
+  position: absolute;
+  width: 0;
+  height: 0;
+  left: auto;
+  right: 0px;
+  top: auto;
+  bottom: -8px;
+  border: 10px solid;
+  border-color: transparent #DAE7FD transparent transparent ;
+}
+
+.card h4{
+  margin-top: 0px;
+}
+
+.comments label{
+  padding-top: 8px;
+  padding-bottom: 8px;
+}
+
+.comments label textarea{
+  width: 100%;
+  background: none;
+  resize: none;
+  height: 16px;
+  padding: 0px;
+}

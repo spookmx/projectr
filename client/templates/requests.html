@@ -1,7 +1,28 @@
 <ion-view view-title="Requests">
   <ion-content padding="true" class="has-header">
 
-    <h1>My Requests</h1>
+    <div class="list">
+      <div ng-if="requests.requests.open.length > 0" class="item item-divider">
+        Open
+      </div>
+      <request-item ng-repeat="openRequest in requests.requests.open" request="openRequest"></request-item>
+
+      <div ng-if="requests.requests.accepted.length > 0" class="item item-divider">
+        Accepted
+      </div>
+      <request-item ng-repeat="acceptedRequest in requests.requests.accepted" request="acceptedRequest"></request-item>
+
+      <div ng-if="requests.requests.completed.length > 0" class="item item-divider">
+        Completed
+      </div>
+      <request-item ng-repeat="completedRequest in requests.requests.completed" request="completedRequest"></request-item>
+
+      <div ng-if="requests.requests.cancelled.length > 0" class="item item-divider">
+        Cancelled
+      </div>
+      <request-item ng-repeat="cancelledRequest in requests.requests.accepted" request="cancelledRequest"></request-item>
+
+    </div>
 
   </ion-content>
 </ion-view>

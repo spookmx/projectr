@@ -85,6 +85,11 @@ import ProductRepsCtrl from '../controllers/product-reps.controller';
 
 import RequestsCtrl from '../controllers/requests.controller';
 
+import RequestItemDirective from '../directives/request-item.directive';
+import RequestItemCtrl from '../controllers/request-item.controller';
+
+import RequestCtrl from '../controllers/request.controller';
+
 import RoutesConfig from '../routes';
 
 const App = 'Projectr';
@@ -144,6 +149,9 @@ new Loader(App)
   .load(ProductRepsDirective)
   .load(ProductRepsCtrl)
   .load(RequestsCtrl)
+  .load(RequestItemDirective)
+  .load(RequestItemCtrl)
+  .load(RequestCtrl)
   .load(RoutesConfig);
 
 if (Meteor.isCordova) {

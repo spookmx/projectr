@@ -1,0 +1,51 @@
+<ion-view>
+  <ion-nav-title>{{ request.product.name }}  - {{ request.services[request.request.service] }}</ion-nav-title>
+  <ion-content padding="true">
+    <span class="item-note">
+      Updated: {{ request.request.lastUpdatedAt | date:'medium' }}
+    </span>
+    <h2>{{ request.product.name }} - {{ request.services[request.request.service] }}</h2>
+    <h3>{{ request.request.status }}</h3>
+    <h4>
+      <i class="icon ion-person"></i> {{ request.representative.givenName }} {{ request.representative.familyName }}
+    </h4>
+
+    <div>
+      <div ng-if="request.request.status == 'Open'">
+        <a ng-if="request.request.requester == request.userId" class="button button-block button-outline button-assertive" ng-click="request.cancel()">
+          Cancel Request
+        </a>
+        <a ng-if="request.request.representative == request.userId" class="button button-block button-positive" ng-click="request.accept()">
+          Accept Request
+        </a>
+      </div>
+    </div>
+
+    <!-- Comments Section -->
+    <div class="card padding">
+      <h4>
+        Comments
+      </h4>
+      <div ng-repeat="comment in request.request.comments" class="item talk-wrapper">
+        <div class="talk-bubble-out">
+          <p>
+            {{ comment.comment }}
+          </p>
+        </div>
+      </div>
+      <div class="list">
+        <div class="item item-input-inset comments">
+          <label class="item-input-wrapper">
+            <textarea placeholder="Add comment..."></textarea>
+          </label>
+          <button class="button button-small button-positive">
+            <i class="icon ion-android-send"></i>
+          </button>
+        </div>
+      </div>
+    </div>
+
+
+
+  </ion-content>
+</ion-modal-view>

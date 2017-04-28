@@ -45,11 +45,11 @@ export default class ProductRepsCtrl extends Controller {
     this.requestPopup.then((additionalInfo)=>{
       let request = {
         requester: this.$rootScope.currentUserId,
-        rep: this.repSelected,
+        representative: this.repSelected,
         product: this.product._id,
         location: this.location.cityId,
         service: this.serviceSelected,
-        additionalInfo: additionalInfo
+        comments: [{user:'requester', comment: additionalInfo, date: new Date()}]
       };
       this.callMethod('addRequest', request, (err, result) => {
         if (err) return this.handleError(err);

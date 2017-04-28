@@ -11,6 +11,7 @@ import adminTerritoriesTemplateUrl from '../templates/admin-territories.html';
 import adminEditStateTemplateUrl from '../templates/admin-edit-state.html';
 import productTemplateUrl from '../templates/product.html';
 import requestsTemplateUrl from '../templates/requests.html';
+import requestTemplateUrl from '../templates/request.html';
 import tabsTemplateUrl from '../templates/tabs.html';
 
 export default class RoutesConfig extends Config {
@@ -118,6 +119,15 @@ export default class RoutesConfig extends Config {
           'tab-requests': {
             templateUrl: requestsTemplateUrl,
             controller: 'RequestsCtrl as requests'
+          }
+        }
+      })
+      .state('tab.request', {
+        url: '/request/:requestId',
+        views: {
+          'tab-requests': {
+            templateUrl: requestTemplateUrl,
+            controller: 'RequestCtrl as request'
           }
         }
       })
