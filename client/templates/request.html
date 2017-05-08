@@ -1,33 +1,37 @@
 <ion-view>
   <ion-nav-title>{{ request.product.name }}  - {{ request.services[request.request.service] }}</ion-nav-title>
   <ion-content padding="true">
-    <span class="item-note">
-      Updated: {{ request.request.lastUpdatedAt | date:'medium' }}
-    </span>
     <h2>{{ request.product.name }} - {{ request.services[request.request.service] }}</h2>
     <h3>{{ request.request.status }}</h3>
-    <h4>
+    <h4 ng-if="request.role == 'requester'">
       <i class="icon ion-person"></i> {{ request.representative.givenName }} {{ request.representative.familyName }}
+    </h4>
+    <h4 ng-if="request.role == 'representative'">
+      <i class="icon ion-person"></i> {{ request.requester.givenName }} {{ request.requester.familyName }}
     </h4>
 
     <div>
+      <a ng-if="request.role == 'requester'" class="button button-block button-outline button-assertive" ng-click="request.cancel()">
+        Cancel Request
+      </a>
       <div ng-if="request.request.status == 'Open'">
-        <a ng-if="request.request.requester == request.userId" class="button button-block button-outline button-assertive" ng-click="request.cancel()">
-          Cancel Request
-        </a>
-        <a ng-if="request.request.representative == request.userId" class="button button-block button-positive" ng-click="request.accept()">
+        <a ng-if="request.role == 'representative'" class="button button-block button-positive" ng-click="request.accept()">
           Accept Request
         </a>
       </div>
+      <div ng-if="request.request.status == 'Accepted'">
+        <a ng-if="request.role == 'representative'" class="button button-block button-positive" ng-click="request.completed()">
+          Mark as Completed
+        </a>
+      </div>
     </div>
-
     <!-- Comments Section -->
     <div class="card padding">
       <h4>
         Comments
       </h4>
       <div ng-repeat="comment in request.request.comments" class="item talk-wrapper">
-        <div class="talk-bubble-out">
+        <div ng-class="{talkBubbleOut: comment.user == request.role, talkBubbleIn: comment.user != request.role}">
           <p>
             {{ comment.comment }}
           </p>
@@ -36,16 +40,17 @@
       <div class="list">
         <div class="item item-input-inset comments">
           <label class="item-input-wrapper">
-            <textarea placeholder="Add comment..."></textarea>
+            <textarea placeholder="Add comment..." ng-model="request.commentInput"></textarea>
           </label>
-          <button class="button button-small button-positive">
+          <button class="button button-small button-positive" ng-click="request.comment()" ng-disabled="!request.commentInput">
             <i class="icon ion-android-send"></i>
           </button>
         </div>
       </div>
     </div>
 
-
-
+    <span class="item-note">
+      Updated: {{ request.request.lastUpdatedAt | date:'medium' }}
+    </span>
   </ion-content>
 </ion-modal-view>

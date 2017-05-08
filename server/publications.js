@@ -37,6 +37,12 @@ Meteor.publish('cities', function() {
   return Cities.find({});
 });
 
-Meteor.publish('requests', function() {
-  return Requests.find({});
+Meteor.publish('requests', function(anonymousUserId) {
+  anonymousUserId ? this.requester = anonymousUserId : this.requester = this.userId;
+  return Requests.find({
+      $or: [
+        { requester: this.requester },
+        { representative: this.userId },
+      ]
+    });
 });

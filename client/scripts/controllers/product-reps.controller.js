@@ -1,4 +1,5 @@
 import { Meteor } from 'meteor/meteor';
+import { Random } from 'meteor/random';
 import { _ } from 'meteor/underscore';
 import { Controller } from 'angular-ecmascript/module-helpers';
 
@@ -43,8 +44,17 @@ export default class ProductRepsCtrl extends Controller {
       ]
     });
     this.requestPopup.then((additionalInfo)=>{
+      if(!this.$rootScope.currentUserId){
+        if(!localStorage.getItem('anonymousUserId')){
+          localStorage.setItem('anonymousUserId', Random.id());
+        }
+        this.requester = localStorage.getItem('anonymousUserId');
+        console.log("Requester: ", this.requester);
+      }else{
+        this.requester = this.$rootScope.currentUserId;
+      }
       let request = {
-        requester: this.$rootScope.currentUserId,
+        requester: this.requester,
         representative: this.repSelected,
         product: this.product._id,
         location: this.location.cityId,
