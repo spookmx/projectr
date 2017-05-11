@@ -12,6 +12,7 @@ import adminEditStateTemplateUrl from '../templates/admin-edit-state.html';
 import productTemplateUrl from '../templates/product.html';
 import requestsTemplateUrl from '../templates/requests.html';
 import requestTemplateUrl from '../templates/request.html';
+import contactsTemplateUrl from '../templates/contacts.html';
 import tabsTemplateUrl from '../templates/tabs.html';
 
 export default class RoutesConfig extends Config {
@@ -128,6 +129,15 @@ export default class RoutesConfig extends Config {
           'tab-requests': {
             templateUrl: requestTemplateUrl,
             controller: 'RequestCtrl as request'
+          }
+        }
+      })
+      .state('tab.contacts', {
+        url: '/contacts',
+        views: {
+          'tab-contacts': {
+            templateUrl: contactsTemplateUrl,
+            controller: 'ContactsCtrl as contacts'
           }
         }
       })

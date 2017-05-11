@@ -90,6 +90,8 @@ import RequestItemCtrl from '../controllers/request-item.controller';
 
 import RequestCtrl from '../controllers/request.controller';
 
+import ContactsCtrl from '../controllers/contacts.controller';
+
 import RoutesConfig from '../routes';
 
 const App = 'Projectr';
@@ -152,6 +154,7 @@ new Loader(App)
   .load(RequestItemDirective)
   .load(RequestItemCtrl)
   .load(RequestCtrl)
+  .load(ContactsCtrl)
   .load(RoutesConfig);
 
 if (Meteor.isCordova) {
