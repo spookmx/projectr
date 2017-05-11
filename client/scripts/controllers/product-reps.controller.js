@@ -46,30 +46,51 @@ export default class ProductRepsCtrl extends Controller {
     this.requestPopup.then((additionalInfo)=>{
       if(!this.$rootScope.currentUserId){
         if(!localStorage.getItem('anonymousUserId')){
-          localStorage.setItem('anonymousUserId', Random.id());
+          let anonymousUserId = Random.id();
+          localStorage.setItem('anonymousUserId', anonymousUserId);
+          Accounts.createUser({password:anonymousUserId, email:anonymousUserId+'@'+anonymousUserId+'.com'}, this.updateInitialInfo());
+        }else{
+          let anonymousUserId = localStorage.getItem('anonymousUserId');
+          Meteor.loginWithPassword(anonymousUserId+"@"+anonymousUserId+'.com', anonymousUserId, (error)=>{ console.log(error);});
         }
-        this.requester = localStorage.getItem('anonymousUserId');
-        console.log("Requester: ", this.requester);
-      }else{
-        this.requester = this.$rootScope.currentUserId;
       }
-      let request = {
-        requester: this.requester,
-        representative: this.repSelected,
-        product: this.product._id,
-        location: this.location.cityId,
-        service: this.serviceSelected,
-        comments: [{user:'requester', comment: additionalInfo, date: new Date()}]
-      };
-      this.callMethod('addRequest', request, (err, result) => {
-        if (err) return this.handleError(err);
-        this.handleAddRequest(result);
+      this.$scope.$watch('productReps.currentUserId', () => {
+        if(this.currentUserId){
+          let request = {
+            requester: this.currentUserId,
+            representative: this.repSelected,
+            product: this.product._id,
+            location: this.location.cityId,
+            service: this.serviceSelected,
+            comments: [{user:'requester', comment: additionalInfo, date: new Date()}]
+          };
+          this.callMethod('addRequest', request, (err, result) => {
+            if (err) return this.handleError(err);
+            this.handleAddRequest(result);
+          });
+        }
       });
     });
   }
 
+  updateInitialInfo(){
+    this.$scope.$watch('productReps.currentUserId', () => {
+      if(this.currentUserId){
+        Meteor.users.update(this.currentUserId, {
+          $set: {
+            givenName: 'Anonymous',
+            familyName: 'User',
+            roleAttribute: 'pro',
+            anonymous: true
+          }
+        });
+      }
+    });
+  }
+
   handleAddRequest(result){
-    this.$timeout(()=>{this.$state.go('tab.requests')} , 0);
+    this.$state.go('tab.requests');
+    this.$scope.$apply();
   }
 
   handleProductReps(result){
@@ -89,4 +110,4 @@ export default class ProductRepsCtrl extends Controller {
 }
 
 ProductRepsCtrl.$name = 'ProductRepsCtrl';
-ProductRepsCtrl.$inject = ['$ionicPopup', '$log', '$scope', '$rootScope', '$state', '$timeout'];
+ProductRepsCtrl.$inject = ['$ionicPopup', '$log', '$scope', '$location', '$rootScope', '$state', '$timeout'];

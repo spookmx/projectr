@@ -13,6 +13,7 @@ Meteor.publish('users', function() {
       givenName: 1,
       familyName: 1,
       roleAttribute: 1,
+      anonymous: 1,
       companies: 1,
       products: 1,
       states: 1,

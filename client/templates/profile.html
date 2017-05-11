@@ -1,7 +1,7 @@
 <ion-view view-title="Profile">
   <ion-content padding="true" class="has-header">
 
-    <div ng-hide="profile.currentUser">
+    <div ng-show="!profile.currentUser || profile.currentUser.anonymous">
       <div class="card list">
         <div class="item item-divider">
         Log In
@@ -45,7 +45,7 @@
       </div>
     </div>
 
-    <div ng-show="profile.currentUser">
+    <div ng-hide="!profile.currentUser || profile.currentUser.anonymous">
     	<div class="list">
           <a href="#/tab/account" class="item item-icon-left">
             <i class="icon ion-person"></i>

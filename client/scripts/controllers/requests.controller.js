@@ -5,12 +5,12 @@ import { Requests } from '../../../lib/collections';
 export default class RequestsCtrl extends Controller {
   constructor() {
     super(...arguments);
-    Meteor.userId() ? this.userId = Meteor.userId() : this.userId = localStorage.getItem('anonymousUserId');
+
     this.subscribe('requests', ()=>{
-      if(Meteor.userId()){
+      if(this.currentUserId){
         return [null];
       }else{
-        return [this.userId];
+        return [this.getReactively('userId')];
       }
     });
 
@@ -27,6 +27,13 @@ export default class RequestsCtrl extends Controller {
       cancelled(){
         return Requests.find({status:'Cancelled'});
       },
+      userId(){
+        if(this.currentUserId){
+          return this.currentUserId;
+        }else{
+          return localStorage.getItem('anonymousUserId');
+        }
+      }
     });
   }
 
