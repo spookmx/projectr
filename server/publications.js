@@ -17,7 +17,8 @@ Meteor.publish('users', function() {
       companies: 1,
       products: 1,
       states: 1,
-      cities: 1
+      cities: 1,
+      contacts: 1
     }
   });
 });
