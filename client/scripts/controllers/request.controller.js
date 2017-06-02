@@ -6,16 +6,14 @@ import { Products, Requests } from '../../../lib/collections';
 export default class RequestCtrl extends Controller {
   constructor() {
     super(...arguments);
-    Meteor.userId() ? this.userId = Meteor.userId() : this.userId = localStorage.getItem('anonymousUserId');
-    this.subscribe('requests', ()=>{
-      if(Meteor.userId()){
-        return [null];
-      }else{
-        return [this.userId];
-      }
-    });
+
+    this.subscribe('requests');
 
     this.requestId = this.$stateParams.requestId;
+
+    this.callMethod('updateRequestView', this.requestId, (err, result) => {
+    });
+
     this.subscribe('products');
 
     this.helpers({
@@ -26,7 +24,7 @@ export default class RequestCtrl extends Controller {
         return Requests.findOne({_id:this.requestId});
       },
       role(){
-        if(this.getReactively('this.request.representative') == this.userId ){
+        if(this.getReactively('this.request.representative') == this.currentUserId ){
           return 'representative';
         }else{
           return 'requester';
@@ -180,7 +178,7 @@ export default class RequestCtrl extends Controller {
 
   comment(){
     let comment = {comment: this.commentInput, date: new Date()};
-    this.request.requester == this.userId ? comment.user = 'requester' : comment.user = 'representative';
+    this.request.requester == this.currentUserId ? comment.user = 'requester' : comment.user = 'representative';
     this.callMethod('commentRequest', {comment: comment, requestId:this.requestId}, (err, result) => {
       if (err) return this.handleError(err);
       this.handlecommentRequest(result);

@@ -1,27 +1,33 @@
 <ion-view view-title="Requests">
   <ion-content padding="true" class="has-header">
 
-    <div class="list">
+    <div class="list" ng-if="requests.open.length > 0 || requests.accepted.length > 0 || requests.completed.length > 0 || requests.cancelled.length > 0">
       <div ng-if="requests.open.length > 0" class="item item-divider">
         Open
       </div>
-      <request-item ng-repeat="openRequest in requests.open" request="openRequest"></request-item>
+      <request-item ng-repeat="openRequest in requests.open" request-id="openRequest._id"></request-item>
 
       <div ng-if="requests.accepted.length > 0" class="item item-divider">
         Accepted
       </div>
-      <request-item ng-repeat="acceptedRequest in requests.accepted" request="acceptedRequest"></request-item>
+      <request-item ng-repeat="acceptedRequest in requests.accepted" request-id="acceptedRequest._id"></request-item>
 
       <div ng-if="requests.completed.length > 0" class="item item-divider">
         Completed
       </div>
-      <request-item ng-repeat="completedRequest in requests.completed" request="completedRequest"></request-item>
+      <request-item ng-repeat="completedRequest in requests.completed" request-id="completedRequest._id"></request-item>
 
       <div ng-if="requests.cancelled.length > 0" class="item item-divider">
         Cancelled
       </div>
-      <request-item ng-repeat="cancelledRequest in requests.cancelled" request="cancelledRequest"></request-item>
+      <request-item ng-repeat="cancelledRequest in requests.cancelled" request-id="cancelledRequest._id"></request-item>
 
+    </div>
+
+    <div class="card" ng-if="requests.open.length == 0 && requests.accepted.length == 0 && requests.completed.length == 0 && requests.cancelled.length == 0 ">
+      <div class="item item-text-wrap">
+        Your service requests will be displayed here.
+      </div>
     </div>
 
   </ion-content>
