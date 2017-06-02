@@ -35,14 +35,42 @@
         <div class="item item-divider">
           New User?
         </div>
-          <div class="item item-text-wrap">
-            Register for an Medical Representative account and offer your products to Healthcare Professionals in your area.
-            <a class="button button-block button-positive" href="#/tab/register">
-                Register
-            </a>
-          </div>
+        <div class="item item-text-wrap">
+          Register for an account, view your contacts and manage your requests in multiple devices.
+          <a class="button button-block button-positive button-outline" href="#/tab/register">
+              Register
+          </a>
         </div>
       </div>
+
+      <div class="card list">
+        <form name="inviteForm" novalidate>
+          <div class="item item-divider">
+            Are you a Medical Rep?
+          </div>
+          <div class="item item-text-wrap">
+            Enter your email and request an invite to offer your products.
+          </div>
+          <label class="item item-input">
+            <input type="email" name="email" placeholder="Enter Email" ng-model="profile.inviteEmail" required>
+          </label>
+          <div>
+            <div class="row">
+              <div class="col">
+                <button ng-disabled="inviteForm.email.$invalid" class="button button-block button-outline" ng-class="{'button-positive': inviteForm.email.$pristine || !inviteForm.email.$invalid, 'button-assertive': inviteForm.email.$invalid && !inviteForm.email.$pristine}" ng-click="profile.requestInvite()">
+                  <span ng-if="inviteForm.email.$invalid && !inviteForm.email.$pristine">
+                    Invalid Email
+                  </span>
+                  <span ng-if="inviteForm.email.$pristine || !inviteForm.email.$invalid">
+                    Request Invite
+                  </span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+
     </div>
 
     <div ng-hide="!profile.currentUser || profile.currentUser.anonymous">

@@ -13,6 +13,7 @@ import productTemplateUrl from '../templates/product.html';
 import requestsTemplateUrl from '../templates/requests.html';
 import requestTemplateUrl from '../templates/request.html';
 import contactsTemplateUrl from '../templates/contacts.html';
+import contactTemplateUrl from '../templates/contact.html';
 import tabsTemplateUrl from '../templates/tabs.html';
 
 export default class RoutesConfig extends Config {
@@ -138,6 +139,15 @@ export default class RoutesConfig extends Config {
           'tab-contacts': {
             templateUrl: contactsTemplateUrl,
             controller: 'ContactsCtrl as contacts'
+          }
+        }
+      })
+      .state('tab.contact', {
+        url: '/contact/:contactId',
+        views: {
+          'tab-contacts': {
+            templateUrl: contactTemplateUrl,
+            controller: 'ContactCtrl as contact'
           }
         }
       })

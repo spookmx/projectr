@@ -92,6 +92,14 @@ import RequestCtrl from '../controllers/request.controller';
 
 import ContactsCtrl from '../controllers/contacts.controller';
 
+import ContactsContactDirective from '../directives/contacts-contact.directive';
+import ContactsContactCtrl from '../controllers/contacts-contact.controller';
+
+import ContactCtrl from '../controllers/contact.controller';
+
+import RepsProductsDirective from '../directives/reps-products.directive';
+import RepsProductsCtrl from '../controllers/reps-products.controller';
+
 import RoutesConfig from '../routes';
 
 const App = 'Projectr';
@@ -155,6 +163,11 @@ new Loader(App)
   .load(RequestItemCtrl)
   .load(RequestCtrl)
   .load(ContactsCtrl)
+  .load(ContactsContactDirective)
+  .load(ContactsContactCtrl)
+  .load(ContactCtrl)
+  .load(RepsProductsDirective)
+  .load(RepsProductsCtrl)
   .load(RoutesConfig);
 
 if (Meteor.isCordova) {

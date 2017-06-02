@@ -16,6 +16,9 @@ export default class ProfileCtrl extends Controller {
   loading(show){
     show ? this.$ionicLoading.show({template: '<ion-spinner icon="lines" class="spinner-light"></ion-spinner>'}): this.$ionicLoading.hide();
   }
+  requestInvite(){
+    //Call method to send invite
+  }
   logout(){
     this.loading(true);
     Meteor.logout(this.loading(false));

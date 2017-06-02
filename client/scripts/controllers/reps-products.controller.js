@@ -3,25 +3,35 @@ import { Random } from 'meteor/random';
 import { _ } from 'meteor/underscore';
 import { Controller } from 'angular-ecmascript/module-helpers';
 
-export default class ProductRepsCtrl extends Controller {
+export default class RepsProductsCtrl extends Controller {
   constructor() {
     super(...arguments);
     this._ = _;
-    this.location = this.$rootScope.selectedLocation;
-    this.helpers({
-    });
-    this.query = {product: this.product, location:this.location};
-    this.callMethod('productReps', this.query, (err, result) => {
-      if (err) return this.handleError(err);
-      this.handleProductReps(result);
-    });
     this.options = {
       s: 'Sample',
       m: 'Inservice Meal',
       i: 'Stock Inventory',
       c: 'Case Coverage'
-    }
+    };
+    this.location = this.$rootScope.selectedLocation;
+    this.$scope.$watch('repsProducts.rep', () => {
+      if(this.rep){
+        _.each(this.rep.products, (e, i)=>{
+          this.callMethod('getProductDetails', e._id, (err, result) => {
+            if (err) return this.handleError(err);
+            this.rep.products[i].name = result.name;
+            this.rep.products[i].company = result.company;
+          });
+        });
+        this.productSelected = this.rep.products[0]._id;
+      }
+    });
+    this.$scope.$watch('repsProducts.productSelected', () => {
+      this.serviceSelected = null;
+    });
   }
+
+  //Add search functionality for products
 
   requestService(){
     this.requestPopup = this.$ionicPopup.show({
@@ -54,12 +64,12 @@ export default class ProductRepsCtrl extends Controller {
           Meteor.loginWithPassword(anonymousUserId+"@"+anonymousUserId+'.com', anonymousUserId, (error)=>{ console.log(error);});
         }
       }
-      this.$scope.$watch('productReps.currentUserId', () => {
+      this.$scope.$watch('repsProducts.currentUserId', () => {
         if(this.currentUserId){
           let request = {
             requester: this.currentUserId,
-            representative: this.repSelected,
-            product: this.product._id,
+            representative: this.rep._id,
+            product: this.productSelected,
             location: this.location.cityId,
             service: this.serviceSelected,
             comments: [{user:'requester', comment: additionalInfo, date: new Date()}]
@@ -73,29 +83,9 @@ export default class ProductRepsCtrl extends Controller {
     });
   }
 
-  updateInitialInfo(){
-    this.$scope.$watch('productReps.currentUserId', () => {
-      if(this.currentUserId){
-        Meteor.users.update(this.currentUserId, {
-          $set: {
-            givenName: 'Anonymous',
-            familyName: 'User',
-            roleAttribute: 'pro',
-            anonymous: true
-          }
-        });
-      }
-    });
-  }
-
   handleAddRequest(result){
     this.$state.go('tab.requests');
     this.$scope.$apply();
-  }
-
-  handleProductReps(result){
-    this.reps = result;
-    this.reps.length >= 1 ? this.repSelected = this.reps[0]._id : null;
   }
 
   handleError(err) {
@@ -109,5 +99,5 @@ export default class ProductRepsCtrl extends Controller {
   }
 }
 
-ProductRepsCtrl.$name = 'ProductRepsCtrl';
-ProductRepsCtrl.$inject = ['$ionicPopup', '$log', '$scope', '$location', '$rootScope', '$state', '$timeout'];
+RepsProductsCtrl.$name = 'RepsProductsCtrl';
+RepsProductsCtrl.$inject = ['$ionicPopup', '$log', '$scope', '$location', '$rootScope', '$state', '$timeout'];

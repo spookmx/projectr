@@ -10,7 +10,7 @@ export default class ShowProductCompanyCtrl extends Controller {
     this.subscribe('companies');
     this.helpers({
       companySelected(){
-        return Companies.findOne({_id:this.company});
+        return Companies.findOne({_id:this.getReactively('company')});
       }
     });
   }

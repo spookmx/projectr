@@ -40,6 +40,7 @@ Meteor.publish('cities', function() {
 });
 
 Meteor.publish('requests', function(anonymousUserId) {
+  //To Do - Publish only requests for the current user, on the susbscribing controllers auto-login first or reject
   anonymousUserId ? this.requester = anonymousUserId : this.requester = this.userId;
   return Requests.find({
       $or: [

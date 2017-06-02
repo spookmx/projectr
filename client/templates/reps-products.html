@@ -1,0 +1,34 @@
+<div>
+  <ion-list>
+    <ion-radio ng-repeat="product in repsProducts.rep.products" ng-model="repsProducts.productSelected" ng-value="product._id">
+      <strong>
+        {{product.name}}
+      </strong>
+      <span class="item-note">
+        <show-product-company company="{{ product.company }}"></show-product-company>
+      </span>
+      <p>
+        <span ng-if="product.s" class="padding-right balanced"><i class="icon ion-stop"></i> Samples </span>
+        <span ng-if="product.m" class="padding-right royal"><i class="icon ion-stop"></i> Inservice Meal </span>
+        <span ng-if="product.i" class="padding-right calm"><i class="icon ion-stop"></i> Stock Inventory </span>
+        <span ng-if="product.c" class="padding-right dark"><i class="icon ion-stop"></i> Case Coverage </span>
+      </p>
+    </ion-radio>
+  </ion-list>
+
+  <label class="item item-input item-select">
+    <div class="input-label">
+      Service
+    </div>
+    <select ng-model="repsProducts.serviceSelected">
+      <option disabled selected value> -- Select -- </option>
+      <option ng-if="repsProducts._.findWhere(repsProducts.rep.products, {_id: repsProducts.productSelected}).s" value="s">Samples</option>
+      <option ng-if="repsProducts._.findWhere(repsProducts.rep.products, {_id: repsProducts.productSelected}).m" value="m">Inservice Meal</option>
+      <option ng-if="repsProducts._.findWhere(repsProducts.rep.products, {_id: repsProducts.productSelected}).i" value="i">Stock Inventory</option>
+      <option ng-if="repsProducts._.findWhere(repsProducts.rep.products, {_id: repsProducts.productSelected}).c" value="c">Case Coverage</option>
+    </select>
+  </label>
+  <button ng-disabled="!repsProducts.serviceSelected" class="button button-full button-positive" ng-click="repsProducts.requestService()">
+    Request
+  </button>
+</div>

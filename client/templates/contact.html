@@ -1,0 +1,35 @@
+<ion-view>
+  <ion-nav-title>{{ contact.contact.givenName }} {{ contact.contact.familyName }} </ion-nav-title>
+  <ion-content padding="true" class="has-header">
+    <label class="item item-input" ng-click="contact.showSearchSelectLocationModal()">
+      <i class="icon ion-location placeholder-icon"></i>
+      <input class="item-input-button" type="text" placeholder="Search by city or state" ng-model="contact.$rootScope.selectedLocation.label">
+    </label>
+
+    <p>
+    </p>
+
+    <div class="card padding" ng-if="contact._.findWhere(contact.contact.cities, {_id: contact.location.cityId}).hospitals">
+      <h4>
+        Hospitals
+      </h4>
+      <div class="padding">
+        {{ contact._.findWhere(contact.contact.cities, {_id: contact.location.cityId}).hospitals }}
+      </div>
+    </div>
+
+    <div class="list card padding" ng-if="contact.activeRequests">
+      <h4>
+        Active Requests
+      </h4>
+      <request-item ng-repeat="request in contact.activeRequests" request="request"></request-item>
+    </div>
+
+    <div class="list card padding">
+      <h4>
+        Request New Service
+      </h4>
+      <reps-products rep="contact.contact"></reps-products>
+    </div>
+  </ion-content>
+</ion-modal-view>

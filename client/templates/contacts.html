@@ -2,9 +2,8 @@
   <ion-content padding="true" class="has-header">
 
     <div class="list">
-      <div class="item" ng-repeat="contact in contacts.user.contacts">
-        {{ contact._id }}
-      </div>
+      <contacts-contact ng-repeat="contact in contacts.user.contacts" user="contact._id">
+      </contacts-contact>
 
     </div>
 
