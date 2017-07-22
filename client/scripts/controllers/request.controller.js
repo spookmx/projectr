@@ -6,6 +6,10 @@ import { Products, Requests } from '../../../lib/collections';
 export default class RequestCtrl extends Controller {
   constructor() {
     super(...arguments);
+
+    this.$scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+        viewData.enableBack = true;
+    });
     Meteor.userId() ? this.userId = Meteor.userId() : this.userId = localStorage.getItem('anonymousUserId');
     this.subscribe('requests', ()=>{
       if(Meteor.userId()){
@@ -56,6 +60,37 @@ export default class RequestCtrl extends Controller {
     };
   }
 
+  rate(value){
+    this.ratePopup = this.$ionicPopup.show({
+      template: '<p>Thanks for helping us improve your experience.</p><textarea ng-model="additionalInfo" placeholder="Feel free to provide any thoughts on the service provided by your representative." rows="5"></textarea>',
+      title: 'Rate Your Representative',
+      scope: this.$scope,
+      buttons: [
+        { text: 'Cancel',
+          onTap: function(e) {
+            return { proceed:false }
+          }
+        },
+        {
+          text: '<b>Submit Rating</b>',
+          type: 'button-positive',
+          onTap: function(e) {
+            return { proceed:true, additionalInfo:this.scope.additionalInfo }
+          }
+        }
+      ]
+    });
+    this.ratePopup.then((result)=>{
+      if(result.proceed){
+        this.callMethod('rateRepresentative', {rating: {value:value, comment:result.additionalInfo, date: new Date()}, requestId:this.requestId}, (err, result) => {
+          if (err) return this.handleError(err);
+        });
+      }else{
+        //console.log('User changed his mind');
+      }
+    });
+  }
+
   handleGetRepresentative(result){
     this.representative = result;
   }
@@ -83,11 +118,7 @@ export default class RequestCtrl extends Controller {
           text: '<b>Cancel Request</b>',
           type: 'button-assertive',
           onTap: function(e) {
-            if (!this.scope.additionalInfo) {
-              e.preventDefault();
-            } else {
-              return { proceed:true, additionalInfo:this.scope.additionalInfo }
-            }
+            return { proceed:true, additionalInfo:this.scope.additionalInfo }
           }
         }
       ]
@@ -216,4 +247,4 @@ export default class RequestCtrl extends Controller {
 }
 
 RequestCtrl.$name = 'RequestCtrl';
-RequestCtrl.$inject = ['$ionicPopup', '$log', '$scope', '$stateParams', '$state', '$timeout'];
+RequestCtrl.$inject = ['$ionicPopup', '$log', '$scope', '$stateParams', '$state', '$timeout', '$ionicHistory'];

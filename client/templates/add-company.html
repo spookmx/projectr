@@ -23,5 +23,25 @@
       </ion-radio>
     </ion-list>
 
+    <div class="list card" ng-if="addCompany.searchText != ''">
+      <div class="item">
+        <h2>Can't find your company?</h2>
+        <p>Request to list it and we'll let you know when it's ready.</p>
+      </div>
+      <form name="requestForm">
+
+        <label class="item item-input">
+          <input name="company" type="text" placeholder="Company Name" ng-model="addCompany.company.name" required>
+        </label>
+        <label class="item item-input">
+          <input name="website" type="text" placeholder="Website (eg. google.com)" ng-model="addCompany.company.website" required>
+        </label>
+        <button ng-disabled="!requestForm.$valid" class="button button-full button-clear button-positive" ng-click="addCompany.requestAddCompanyModal()">
+          Request Listing
+        </button>
+
+      </form>
+    </div>
+
   </ion-content>
 </ion-modal-view>

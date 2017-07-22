@@ -18,7 +18,12 @@ export default class ContactCtrl extends Controller {
     });
     this.helpers({
       activeRequests(){
-        return Requests.find({$and:[{$or:[{status:'Open'}, {status:'Accepted'}]}, {representative:this.contactId}]});
+        if(this.getReactively('user.roleAttribute')=='rep'){
+          return Requests.find({$and:[{$or:[{status:'Open'}, {status:'Accepted'}]}, {requester:this.contactId}]});
+        }else{
+          return Requests.find({$and:[{$or:[{status:'Open'}, {status:'Accepted'}]}, {representative:this.contactId}]});
+        }
+
       },
       userId(){
         if(this.currentUserId){
@@ -26,6 +31,9 @@ export default class ContactCtrl extends Controller {
         }else{
           return localStorage.getItem('anonymousUserId');
         }
+      },
+      user() {
+        return Meteor.users.findOne({_id:Meteor.userId()});
       }
     });
 

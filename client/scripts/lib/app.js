@@ -10,6 +10,8 @@ import Loader from 'angular-ecmascript/module-loader';
 import { Meteor } from 'meteor/meteor';
 
 //Modules
+import TabsCtrl from '../controllers/tabs.controller';
+
 import SearchCtrl from '../controllers/search.controller';
 import ProfileCtrl from '../controllers/profile.controller';
 import ProfileRegisterCtrl from '../controllers/profile-register.controller';
@@ -111,6 +113,7 @@ Angular.module(App, [
 ]);
 
 new Loader(App)
+  .load(TabsCtrl)
   .load(SearchCtrl)
   .load(ProfileCtrl)
   .load(ProfileRegisterCtrl)

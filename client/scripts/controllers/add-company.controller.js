@@ -58,7 +58,25 @@ export default class AddCompanyCtrl extends Controller {
     this.AddCompany.hideModal();
   }
 
+  requestAddCompanyModal(){
+    this.callMethod('adminAddCompany', this.company, (err, result) => {
+      if (err) return this.handleError(err);
+      this.handleRequestCompleted();
+    });
+  }
+
+  handleRequestCompleted(){
+    this.hideAddCompanyModal();
+    this.$rootScope.requestCompletedAlert = this.$ionicPopup.show({
+      title: 'Request Listing',
+      template: 'Thanks! We are processing your request.',
+      buttons: [
+      { text: 'Ok' }
+      ]
+    });
+  }
+
 }
 
 AddCompanyCtrl.$name = 'AddCompanyCtrl';
-AddCompanyCtrl.$inject = ['AddCompany', '$ionicPopup', '$log', '$scope'];
+AddCompanyCtrl.$inject = ['AddCompany', '$ionicPopup', '$log', '$scope', '$rootScope'];

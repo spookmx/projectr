@@ -5,6 +5,11 @@ import { Requests } from '../../../lib/collections';
 export default class RequestsCtrl extends Controller {
   constructor() {
     super(...arguments);
+    this.$ionicHistory.clearHistory();
+
+    this.$scope.$on('$ionicView.beforeEnter', function (event, viewData) {
+        viewData.enableBack = false;
+    });
 
     this.subscribe('requests', ()=>{
       if(this.currentUserId){
@@ -40,4 +45,4 @@ export default class RequestsCtrl extends Controller {
 }
 
 RequestsCtrl.$name = 'RequestsCtrl';
-RequestsCtrl.$inject = ['$ionicPopup', '$log', '$scope', '$rootScope'];
+RequestsCtrl.$inject = ['$ionicPopup', '$log', '$scope', '$rootScope', '$ionicHistory'];

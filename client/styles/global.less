@@ -1,3 +1,52 @@
+@teal: #6DC2BD;
+@teal-activated: #52928E;
+@teal-calm: #99FFFF;
+@teal-positive: #657675;
+@teal-stable: #C5E7E5;
+
+body, .ionic-body, h1, h2, h3, h4, h5, h6, .h1, .h2, .h3, .h4, .h5, .h6  {
+  color: #444444;
+}
+
+.tabs-positive > .tabs, .tabs.tabs-positive, .bar.bar-positive  {
+    border-color: @teal;
+    background-color: @teal;
+    background-image: linear-gradient(0deg, @teal, @teal 50%, transparent 50%);
+}
+
+//Button Positive
+.button.button-positive {
+    background-color: @teal;
+}
+.button.button-positive.activated {
+    background-color: @teal-activated;
+}
+
+//Button Positive Outline
+.button.button-positive.button-outline {
+    border-color: @teal-positive;
+    color: @teal-positive;
+}
+.button.button-positive.button-outline.activated {
+    background-color: @teal-positive;
+}
+
+//Button Positive Clear
+.button.button-positive.button-clear {
+    color: @teal-positive;
+}
+
+//Button Calm Outline
+.button.button-calm.button-outline {
+    border-color: @teal;
+    color: @teal;
+}
+.button.button-calm.button-outline.activated {
+    background-color: @teal;
+}
+
+
+
 .radiant {
   color: #FFA500;
 }
@@ -14,7 +63,7 @@
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
-  background-color: #A4C4FA;
+  background-color: @teal-stable;
   float: left;
 }
 .talkBubbleIn p{
@@ -33,7 +82,7 @@
   top: auto;
   bottom: -8px;
   border: 10px solid;
-  border-color: transparent transparent transparent #A4C4FA;
+  border-color: transparent transparent transparent @teal-stable;
 }
 .talkBubbleOut{
   display: inline-block;
@@ -43,7 +92,7 @@
   border-radius: 10px;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
-  background-color: #DAE7FD;
+  background-color: @teal-positive;
   float: right;
 }
 .talkBubbleOut p{
@@ -51,6 +100,7 @@
   text-align: right;
   line-height: 1.5em;
   margin: 0em;
+  color: #fff;
 }
 .talkBubbleOut:after{
   content: ' ';
@@ -62,7 +112,7 @@
   top: auto;
   bottom: -8px;
   border: 10px solid;
-  border-color: transparent #DAE7FD transparent transparent ;
+  border-color: transparent @teal-positive transparent transparent ;
 }
 
 .card h4{
@@ -84,4 +134,8 @@
   resize: none;
   height: 16px;
   padding: 0px;
+}
+
+.center{
+  text-align: center;
 }

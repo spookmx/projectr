@@ -23,7 +23,8 @@ export default class RoutesConfig extends Config {
       .state('tab', {
         url: '/tab',
         abstract: true,
-        templateUrl: tabsTemplateUrl
+        templateUrl: tabsTemplateUrl,
+        controller: 'TabsCtrl as tabs'
       })
       .state('tab.profile', {
         url: '/profile',

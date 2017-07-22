@@ -22,7 +22,7 @@
             </div>
 
             <div class="col">
-              <button class="item button button-block button-calm" ng-click="profile.login()">
+              <button class="item button button-block button-positive" ng-click="profile.login()">
                 Sign In
               </button>
             </div>
@@ -33,10 +33,10 @@
 
       <div class="list card">
         <div class="item item-divider">
-          New User?
+          Health Care Professionals
         </div>
         <div class="item item-text-wrap">
-          Register for an account, view your contacts and manage your requests in multiple devices.
+          Register your account to have access to more features such as saving your favorite contacts, managing requests for services and products, and rating your reps on all of your devices.
           <a class="button button-block button-positive button-outline" href="#/tab/register">
               Register
           </a>
@@ -46,10 +46,10 @@
       <div class="card list">
         <form name="inviteForm" novalidate>
           <div class="item item-divider">
-            Are you a Medical Rep?
+            Medical Sales Representatives
           </div>
           <div class="item item-text-wrap">
-            Enter your email and request an invite to offer your products.
+            Please enter your email and you will be sent an invitation to join Fluity
           </div>
           <label class="item item-input">
             <input type="email" name="email" placeholder="Enter Email" ng-model="profile.inviteEmail" required>
@@ -106,12 +106,12 @@
           <a href="#/tab/admin-portfolio" class="item item-icon-left positive">
             <i class="icon ion-filing"></i>
             Portfolio
-            <span class="badge">{{ profile.user.products ? profile.user.products.length : 0 }} Products</span>
+            <!-- <span class="badge">{{ profile.user.products ? profile.user.products.length : 0 }} Products</span> -->
           </a>
           <a href="#/tab/admin-territories" class="item item-icon-left positive">
             <i class="icon ion-map"></i>
             Territories
-            <span class="badge">{{ profile.user.cities ? profile.user.cities.length : 0 }} Cities</span>
+            <!-- <span class="badge">{{ profile.user.cities ? profile.user.cities.length : 0 }} Cities</span> -->
           </a>
         </div>
     </div>

@@ -1,4 +1,4 @@
-<a class="item" href="#/tab/request/{{requestItem.request._id}}">
+<a class="item" ui-sref="tab.request({requestId: requestItem.request._id})">
   {{ requestItem.product.name }}
   <span class="item-note">
     {{ requestItem.services[requestItem.request.service] }}

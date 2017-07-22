@@ -11,7 +11,7 @@
     </h4>
 
     <div>
-      <a ng-if="request.role == 'requester'" class="button button-block button-outline button-assertive" ng-click="request.cancel()">
+      <a ng-if="request.role == 'requester' && request.request.status != 'Completed'" class="button button-block button-outline button-assertive" ng-click="request.cancel()">
         Cancel Request
       </a>
       <div ng-if="request.request.status == 'Open'">
@@ -24,6 +24,20 @@
           Mark as Completed
         </a>
       </div>
+
+      <div ng-if="request.request.status == 'Completed' && request.role == 'requester' && !request.request.rating" class="card padding">
+        <div class="center padding">
+          <h4>
+            Rate your representative
+          </h4>
+          <a class="button button-icon icon ion-android-star-outline" ng-click="request.rate(1)"></a>
+          <a class="button button-icon icon ion-android-star-outline" ng-click="request.rate(2)"></a>
+          <a class="button button-icon icon ion-android-star-outline" ng-click="request.rate(3)"></a>
+          <a class="button button-icon icon ion-android-star-outline" ng-click="request.rate(4)"></a>
+          <a class="button button-icon icon ion-android-star-outline" ng-click="request.rate(5)"></a>
+        </div>
+      </div>
+
     </div>
     <!-- Comments Section -->
     <div class="card padding">

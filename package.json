@@ -2,7 +2,8 @@
   "name": "projectr",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor run",
+    "production": "DEPLOY_HOSTNAME=galaxy.meteor.com meteor deploy fluity.meteorapp.com --settings settings-production.json"
   },
   "dependencies": {
     "angular": "^1.5.8",
