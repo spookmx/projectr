@@ -7,6 +7,9 @@ export default class ProductRepsCtrl extends Controller {
   constructor() {
     super(...arguments);
     this._ = _;
+    let storage = window.localStorage;
+    let selectedLocation = JSON.parse(storage.getItem('location'));
+    selectedLocation ? this.$rootScope.selectedLocation = selectedLocation : null;
     this.location = this.$rootScope.selectedLocation;
     this.helpers({
     });
@@ -34,11 +37,7 @@ export default class ProductRepsCtrl extends Controller {
           text: '<b>Request</b>',
           type: 'button-positive',
           onTap: function(e) {
-            if (!this.scope.additionalInfo) {
-              e.preventDefault();
-            } else {
-              return this.scope.additionalInfo;
-            }
+            return this.scope.additionalInfo;
           }
         }
       ]
