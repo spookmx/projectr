@@ -1,9 +1,7 @@
 <a class="item" ui-sref="tab.request({requestId: requestItem.request._id})">
   {{ requestItem.product.name }}
-  <span ng-if="!requestItem.badge" class="item-note">
+  <span class="item-note">
     {{ requestItem.services[requestItem.request.service] }}
   </span>
-  <span ng-if="requestItem.badge" class="badge badge-positive">
-    {{ requestItem.badge }}
-  </span>
+
 </a>

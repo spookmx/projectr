@@ -12,7 +12,7 @@ export default class RequestItemDirective extends Directive {
     this.bindToController = true;
     this.replace = true;
     this.scope = {
-      requestId:'<'
+      request:'<'
     };
   }
 

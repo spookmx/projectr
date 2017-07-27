@@ -11,32 +11,33 @@ export default class RequestsCtrl extends Controller {
         viewData.enableBack = false;
     });
 
-    //Anonymous user auto login
-    if(!this.currentUserId){
-      if(!localStorage.getItem('anonymousUserId')){
-        let anonymousUserId = Random.id();
-        localStorage.setItem('anonymousUserId', anonymousUserId);
-        Accounts.createUser({password:anonymousUserId, email:anonymousUserId+'@'+anonymousUserId+'.com'}, this.updateInitialInfo());
+    this.subscribe('requests', ()=>{
+      if(this.currentUserId){
+        return [null];
       }else{
-        let anonymousUserId = localStorage.getItem('anonymousUserId');
-        Meteor.loginWithPassword(anonymousUserId+"@"+anonymousUserId+'.com', anonymousUserId, (error)=>{ console.log(error);});
+        return [this.getReactively('userId')];
       }
-    }
-
-    this.subscribe('requests');
+    });
 
     this.helpers({
       open(){
-        return Requests.find({status:'Open'}, {sort: {lastUpdatedAt:-1}});
+        return Requests.find({status:'Open'});
       },
       accepted(){
-        return Requests.find({status:'Accepted'}, {sort: {lastUpdatedAt:-1}});
+        return Requests.find({status:'Accepted'});
       },
       completed(){
-        return Requests.find({status:'Completed'}, {sort: {lastUpdatedAt:-1}});
+        return Requests.find({status:'Completed'});
       },
       cancelled(){
-        return Requests.find({status:'Cancelled'}, {sort: {lastUpdatedAt:-1}});
+        return Requests.find({status:'Cancelled'});
+      },
+      userId(){
+        if(this.currentUserId){
+          return this.currentUserId;
+        }else{
+          return localStorage.getItem('anonymousUserId');
+        }
       }
     });
   }

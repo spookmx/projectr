@@ -47,17 +47,6 @@ export default class ContactCtrl extends Controller {
     this.location ? this.$rootScope.selectedLocation = this.location : null;
   }
 
-  removeContact(){
-    this.callMethod('removeContact', this.contactId, (err, result) => {
-      if (err) return this.handleError(err);
-      this.handleremoveContact(result);
-    });
-  }
-
-  handleremoveContact(result){
-    this.$state.go('tab.contacts');
-  }
-
   handleGetUser(result){
     this.contact = result;
   }

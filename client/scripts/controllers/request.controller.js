@@ -7,7 +7,6 @@ export default class RequestCtrl extends Controller {
   constructor() {
     super(...arguments);
 
-<<<<<<< HEAD
     this.$scope.$on('$ionicView.beforeEnter', function (event, viewData) {
         viewData.enableBack = true;
     });
@@ -19,15 +18,8 @@ export default class RequestCtrl extends Controller {
         return [this.userId];
       }
     });
-=======
-    this.subscribe('requests');
->>>>>>> origin/master
 
     this.requestId = this.$stateParams.requestId;
-
-    this.callMethod('updateRequestView', this.requestId, (err, result) => {
-    });
-
     this.subscribe('products');
 
     this.helpers({
@@ -38,7 +30,7 @@ export default class RequestCtrl extends Controller {
         return Requests.findOne({_id:this.requestId});
       },
       role(){
-        if(this.getReactively('this.request.representative') == this.currentUserId ){
+        if(this.getReactively('this.request.representative') == this.userId ){
           return 'representative';
         }else{
           return 'requester';
@@ -219,7 +211,7 @@ export default class RequestCtrl extends Controller {
 
   comment(){
     let comment = {comment: this.commentInput, date: new Date()};
-    this.request.requester == this.currentUserId ? comment.user = 'requester' : comment.user = 'representative';
+    this.request.requester == this.userId ? comment.user = 'requester' : comment.user = 'representative';
     this.callMethod('commentRequest', {comment: comment, requestId:this.requestId}, (err, result) => {
       if (err) return this.handleError(err);
       this.handlecommentRequest(result);

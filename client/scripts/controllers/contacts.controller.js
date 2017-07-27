@@ -4,23 +4,12 @@ import { _ } from 'meteor/underscore';
 export default class ContactsCtrl extends Controller {
   constructor() {
     super(...arguments);
-
-    //Anonymous user auto login
-    if(!this.currentUserId){
-      if(!localStorage.getItem('anonymousUserId')){
-        let anonymousUserId = Random.id();
-        localStorage.setItem('anonymousUserId', anonymousUserId);
-        Accounts.createUser({password:anonymousUserId, email:anonymousUserId+'@'+anonymousUserId+'.com'}, this.updateInitialInfo());
-      }else{
-        let anonymousUserId = localStorage.getItem('anonymousUserId');
-        Meteor.loginWithPassword(anonymousUserId+"@"+anonymousUserId+'.com', anonymousUserId, (error)=>{ console.log(error);});
-      }
-    }
+    Meteor.userId() ? this.userId = Meteor.userId() : this.userId = localStorage.getItem('anonymousUserId');
 
     this.subscribe('users', () => []);
     this.helpers({
       user() {
-        return Meteor.users.findOne({_id:this.currentUserId});
+        return Meteor.users.findOne({_id:this.userId});
       }
     });
 

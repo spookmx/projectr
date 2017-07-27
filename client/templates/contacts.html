@@ -1,15 +1,10 @@
 <ion-view view-title="Contacts">
   <ion-content padding="true" class="has-header">
 
-    <div class="list" ng-if="contacts.user.contacts.length > 0">
+    <div class="list">
       <contacts-contact ng-repeat="contact in contacts.user.contacts" user="contact._id">
       </contacts-contact>
-    </div>
 
-    <div class="card" ng-if="!contacts.user.contacts || contacts.user.contacts.length == 0">
-      <div class="item item-text-wrap">
-        Your contacts will show here once a request is created.
-      </div>
     </div>
 
   </ion-content>
