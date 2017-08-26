@@ -1,6 +1,7 @@
 #Settings files
 settings-development.json
 settings-production.json
+server/startup/env.js
 
 # Windows image file caches
 Thumbs.db

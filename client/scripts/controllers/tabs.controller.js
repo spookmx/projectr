@@ -3,6 +3,8 @@ import { Controller } from 'angular-ecmascript/module-helpers';
 export default class TabsCtrl extends Controller {
   constructor() {
     super(...arguments);
+
+
   }
 
   goTo(){

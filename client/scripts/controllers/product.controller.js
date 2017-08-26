@@ -6,6 +6,7 @@ import { Products } from '../../../lib/collections';
 export default class ProductCtrl extends Controller {
   constructor() {
     super(...arguments);
+    this.loading(true);
     this.productId = this.$stateParams.productId;
     this.subscribe('products');
     this.helpers({
@@ -13,7 +14,18 @@ export default class ProductCtrl extends Controller {
         return Products.findOne({_id: this.productId});
       },
     });
+    this.$scope.$watch('product.selectedProduct', () => {
+      if(this.selectedProduct){
+        this.loading(false);
+      }
+    });
   }
+
+  loading(show){
+    show ? this.$ionicLoading.show({template: '<ion-spinner icon="lines" class="spinner-light"></ion-spinner>'}): this.$ionicLoading.hide();
+  }
+
+
 
   handleError(err) {
     this.$log.error('Showing product error ', err);
@@ -28,4 +40,4 @@ export default class ProductCtrl extends Controller {
 }
 
 ProductCtrl.$name = 'ProductCtrl';
-ProductCtrl.$inject = ['$ionicPopup', '$log', '$scope', '$stateParams', '$state'];
+ProductCtrl.$inject = ['$ionicPopup', '$log', '$scope', '$stateParams', '$state', '$ionicLoading'];

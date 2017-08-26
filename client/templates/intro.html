@@ -1,0 +1,55 @@
+<ion-view view-title="">
+
+  <ion-content padding="true" class="has-header" scroll="false">
+    <ion-slide-box on-slide-changed="intro.slideChanged(index)">
+      <ion-slide>
+        <h3>Welcome to fluity!</h3>
+        <p>
+          Fluity makes it easy for healthcare professionals to request local support on pharmaceutical and medical products.
+        </p>
+        <p>
+          It works by finding the a provider that services your city, select your location to get started.
+        </p>
+        <p>
+          Version 0.0.2
+        </p>
+        <div class="padding">
+          <button ng-click="intro.selectionView()" class="button button-block button-positive">
+            Select Location
+          </button>
+        </div>
+
+      </ion-slide>
+      <ion-slide>
+        <h3>Select your location</h3>
+
+        <label class="item item-input item-select">
+          <div class="input-label">
+            State
+          </div>
+          <select ng-model="intro.stateSelectedId">
+            <option ng-repeat="state in intro.states" value="{{state._id}}">{{state.name}}</option>
+          </select>
+        </label>
+        <label class="item item-input item-select" ng-if="intro.stateSelectedId">
+          <div class="input-label">
+            City
+          </div>
+          <select ng-model="intro.citySelectedId">
+            <option value="all">All</option>
+            <option ng-repeat="city in intro.cities" value="{{city._id}}">{{city.name}}</option>
+          </select>
+        </label>
+
+        <div class="padding">
+          <button ng-disabled="!intro.citySelectedId" ng-click="intro.getStarted()" class="button button-block button-positive">
+            Get Started
+          </button>
+        </div>
+
+      </ion-slide>
+    </ion-slide-box>
+
+  </ion-content>
+
+</ion-view>

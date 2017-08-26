@@ -5,23 +5,29 @@
     </div>
     <h1 class="title">Select Location</h1>
     <div class="buttons">
-      <button class="button button-positive" ng-disabled="!searchSelectLocation.choice" ng-click="searchSelectLocation.selectSearchSelectLocationModal()">Select</button>
+      <button class="button button-positive" ng-disabled="!searchSelectLocation.citySelectedId" ng-click="searchSelectLocation.selectSearchSelectLocationModal()">Select</button>
     </div>
   </ion-header-bar>
 
   <ion-content>
-    <label class="item item-input">
-      <input type="text" placeholder="Search..." ng-model="searchSelectLocation.searchText.name">
-      <a ng-if="searchSelectLocation.searchText.name != ''" on-touch="searchSelectLocation.searchText.name=''">
-         <i class="icon ion-ios-close placeholder-icon"></i>
-      </a>
-    </label>
 
-    <ion-list>
-      <ion-radio ng-repeat="place in searchSelectLocation.places | filter:searchSelectLocation.searchText" ng-model="searchSelectLocation.choice" ng-value="place">
-        {{place.name}}<span ng-if="place.state" >, <show-state-abbrev state="place.state"></show-state-abbrev></span>
-      </ion-radio>
-    </ion-list>
+    <label class="item item-input item-select">
+      <div class="input-label">
+        State
+      </div>
+      <select ng-model="searchSelectLocation.stateSelectedId">
+        <option ng-repeat="state in searchSelectLocation.states" value="{{state._id}}">{{state.name}}</option>
+      </select>
+    </label>
+    <label class="item item-input item-select" ng-if="searchSelectLocation.stateSelectedId">
+      <div class="input-label">
+        City
+      </div>
+      <select ng-model="searchSelectLocation.citySelectedId">
+        <option value="all">All</option>
+        <option ng-repeat="city in searchSelectLocation.cities" value="{{city._id}}">{{city.name}}</option>
+      </select>
+    </label>
 
   </ion-content>
 </ion-modal-view>

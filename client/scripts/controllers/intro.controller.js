@@ -1,11 +1,9 @@
-import { Meteor } from 'meteor/meteor';
-import { _ } from 'meteor/underscore';
 import { Controller } from 'angular-ecmascript/module-helpers';
 import { Cities, States } from '../../../lib/collections';
 
-export default class SearchSelectLocationCtrl extends Controller {
+export default class IntroCtrl extends Controller {
   constructor() {
-    super(...arguments)
+    super(...arguments);
 
     let storage = window.localStorage;
     let selectedLocation = JSON.parse(storage.getItem('location'));
@@ -27,10 +25,14 @@ export default class SearchSelectLocationCtrl extends Controller {
 
     this.helpers({
       states(){
-        return States.find();
+        return States.find({},{
+          sort: { name: 1 }
+        });
       },
       cities(){
-        return Cities.find({state:this.getReactively('stateSelectedId')});
+        return Cities.find({state:this.getReactively('stateSelectedId')},{
+          sort: { name: 1 }
+        });
       },
       stateSelected() {
         return States.findOne({_id:this.getReactively('stateSelectedId')});
@@ -39,9 +41,10 @@ export default class SearchSelectLocationCtrl extends Controller {
         return Cities.findOne({_id:this.getReactively('citySelectedId')});
       }
     });
+
   }
 
-  selectSearchSelectLocationModal() {
+  getStarted(){
     if(this.citySelectedId == "all"){
       this.selectedLocation = {label:this.stateSelected.name, cityName:null, stateId:this.stateSelected._id, cityId:null, stateName:this.stateSelected.name, stateAbbrev:this.stateSelected.abbreviation};
     }else{
@@ -50,25 +53,13 @@ export default class SearchSelectLocationCtrl extends Controller {
     let storage = window.localStorage;
     storage.setItem('location', JSON.stringify(this.selectedLocation));
     this.$rootScope.selectedLocation = this.selectedLocation;
-
-    this.hideSearchSelectLocationModal();
+    this.$timeout(()=>{this.$state.go('tab.search')} , 500);
   }
 
-  handleError(err) {
-    this.$log.error('Adding location error ', err);
-
-    this.$ionicPopup.alert({
-      title: err.reason || 'Failed to add location',
-      template: 'Please try again',
-      okType: 'button-positive button-clear'
-    });
+  selectionView(){
+    this.$ionicSlideBoxDelegate.next();
   }
-
-  hideSearchSelectLocationModal() {
-    this.SearchSelectLocation.hideModal();
-  }
-
 }
 
-SearchSelectLocationCtrl.$name = 'SearchSelectLocationCtrl';
-SearchSelectLocationCtrl.$inject = ['SearchSelectLocation', '$ionicPopup', '$log', '$scope', '$rootScope'];
+IntroCtrl.$name = 'IntroCtrl';
+IntroCtrl.$inject = ['$log', '$scope', '$rootScope', '$state', '$ionicSlideBoxDelegate', '$timeout'];

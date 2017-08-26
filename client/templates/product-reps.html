@@ -1,4 +1,9 @@
 <div class="padding">
+  <div ng-if="!productReps.reps">
+    <button class="button button-clear button-light">
+      <i class="icon ion-person-stalker"></i> Finding Reps...
+    </button>
+  </div>
   <div ng-if="productReps.reps.length == 0">
     No reps found in {{ productReps.location.label }}
   </div>

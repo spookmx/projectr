@@ -15,11 +15,23 @@ import requestTemplateUrl from '../templates/request.html';
 import contactsTemplateUrl from '../templates/contacts.html';
 import contactTemplateUrl from '../templates/contact.html';
 import tabsTemplateUrl from '../templates/tabs.html';
+import introTemplateUrl from '../templates/intro.html';
+import launcherTemplateUrl from '../templates/launcher.html';
 
 export default class RoutesConfig extends Config {
 
   configure() {
     this.$stateProvider
+      .state('launcher', {
+        url: '/launcher',
+        templateUrl: launcherTemplateUrl,
+        controller: 'LauncherCtrl as launcher'
+      })
+      .state('intro', {
+        url: '/intro',
+        templateUrl: introTemplateUrl,
+        controller: 'IntroCtrl as intro'
+      })
       .state('tab', {
         url: '/tab',
         abstract: true,
@@ -161,7 +173,7 @@ export default class RoutesConfig extends Config {
           }
         }
       });
-    this.$urlRouterProvider.otherwise('tab/search');
+    this.$urlRouterProvider.otherwise('/launcher');
   }
 }
 

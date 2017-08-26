@@ -11,10 +11,16 @@ export default class SearchCtrl extends Controller {
   }
 
   search(){
+    this.loading(true);
     this.callMethod('search', this.searchText, (err, result) => {
       if (err) return this.handleError(err);
       this.products = result;
+      this.loading(false);
     });
+  }
+
+  loading(show){
+    show ? this.$ionicLoading.show({template: '<ion-spinner icon="lines" class="spinner-light"></ion-spinner>'}): this.$ionicLoading.hide();
   }
 
   showSearchSelectLocationModal(){
@@ -23,4 +29,4 @@ export default class SearchCtrl extends Controller {
 }
 
 SearchCtrl.$name = 'SearchCtrl';
-SearchCtrl.$inject = ['SearchSelectLocation', '$ionicPopup', '$log', '$scope', '$rootScope'];
+SearchCtrl.$inject = ['SearchSelectLocation', '$ionicPopup', '$log', '$scope', '$rootScope', '$ionicLoading'];
