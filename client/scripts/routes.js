@@ -1,10 +1,13 @@
 import { Config } from 'angular-ecmascript/module-helpers';
 import searchTemplateUrl from '../templates/search.html';
+
 import profileTemplateUrl from '../templates/profile.html';
 import profileRegisterTemplateUrl from '../templates/profile-register.html';
+import profileForgotTemplateUrl from '../templates/profile-forgot.html';
 import profilePortfolioTemplateUrl from '../templates/profile-portfolio.html';
 import profileTerritoriesTemplateUrl from '../templates/profile-territories.html';
 import profileAccountTemplateUrl from '../templates/profile-account.html';
+
 import adminPortfolioTemplateUrl from '../templates/admin-portfolio.html';
 import adminEditCompanyTemplateUrl from '../templates/admin-edit-company.html';
 import adminTerritoriesTemplateUrl from '../templates/admin-territories.html';
@@ -53,6 +56,15 @@ export default class RoutesConfig extends Config {
           'tab-profile': {
             templateUrl: profileRegisterTemplateUrl,
             controller: 'ProfileRegisterCtrl as profileRegister'
+          }
+        }
+      })
+      .state('tab.forgot', {
+        url: '/forgot',
+        views: {
+          'tab-profile': {
+            templateUrl: profileForgotTemplateUrl,
+            controller: 'ProfileForgotCtrl as profileForgot'
           }
         }
       })

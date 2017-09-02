@@ -1,0 +1,28 @@
+<ion-view view-title="Forgot Password">
+  <ion-content padding="true" >
+    <form name="forgotForm" novalidate>
+      <div class="card list">
+        <div class="item">
+          If you forgot your password, you can reset it to create a new one. Enter the email address that you use to log into your Fluity account.
+        </div>
+
+        <label class="item item-input item-stacked-label">
+          <div class="input-label">
+            Email
+            <small class="assertive" ng-if="forgotForm.email.$invalid && !forgotForm.email.$pristine">
+              Invalid
+            </small>
+          </div>
+          <input type="email" name="email" placeholder="john@smith.com" ng-model="profileForgot.email" required>
+        </label>
+
+        <div class="item">
+          <button class="item button button-block button-positive" ng-disabled="forgotForm.$invalid" ng-click="profileForgot.reset()">
+            Reset Password
+          </button>
+        </div>
+
+      </div>
+    </form>
+  </ion-content>
+</ion-view>

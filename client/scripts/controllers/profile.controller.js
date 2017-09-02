@@ -1,3 +1,4 @@
+import { Email } from 'meteor/email';
 import { Controller } from 'angular-ecmascript/module-helpers';
 
 export default class ProfileCtrl extends Controller {
@@ -20,16 +21,17 @@ export default class ProfileCtrl extends Controller {
     this.loading(true);
     this.message = {
       email: this.inviteEmail,
-      body: 'Come and get your fluity',
+      subject: 'You are invited to get Fluity!',
+      html: 'Make it easy for healthcare professionals to find your services, sign up at <a href="www.getfluity.com/register">www.getfluity.com/signup</a>'
     };
-    this.callMethod('requestInvite', this.message, (err, result) => {
+    this.callMethod('sendEmail', this.message, (error, result) => {
       if (error) return this.handleError(error);
       var alertPopup = this.$ionicPopup.alert({
         title: 'Invite',
         template: 'Thanks, you will receive an invitation soon.'
        });
        this.inviteEmail = '';
-      this.loading(false);
+       this.loading(false);
     });
   }
   logout(){
@@ -40,6 +42,16 @@ export default class ProfileCtrl extends Controller {
     this.loading(true);
     Meteor.loginWithPassword(this.loginForm.email, this.loginForm.password, (error)=>{
       if (error) return this.handleError(error);
+      this.loading(false);
+    });
+  }
+  sendVerificationEmail(){
+    this.callMethod('sendVerificationEmail', this.userId, (err, result) => {
+      if (err) return this.handleError(err);
+      var alertPopup = this.$ionicPopup.alert({
+        title: 'Email Verification',
+        template: 'An email with instructions to verify your email address will be sent out shortly.'
+       });
     });
   }
   handleError(error){
@@ -49,9 +61,6 @@ export default class ProfileCtrl extends Controller {
      });
     console.error(error);
     this.loading(false)
-  }
-  forgotPassword(){
-    //ToDo
   }
 }
 

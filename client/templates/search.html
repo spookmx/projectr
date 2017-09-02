@@ -1,6 +1,10 @@
 <ion-view view-title="Search">
   <ion-content padding="true" class="has-header">
 
+    <p>
+      Version 0.0.4
+    </p>
+
     <label class="item item-input">
       <input type="text" placeholder="Search..." ng-model="search.searchText">
       <a ng-if="search.searchText != ''" on-touch="search.searchText=''">
@@ -26,25 +30,6 @@
         <search-product-reps product="product"></search-product-reps>
       </a>
     </div>
-
-    <!-- <div class="list list-mobile" ng-if="search.searchText == ''">
-      <div class="card">
-        <div class="item item-divider">
-          I'm interested in...
-        </div>
-        <div class="item item-text-wrap">
-          <ion-list>
-            <ion-checkbox ng-model="search.red">Dermatology</ion-checkbox>
-            <ion-checkbox ng-model="search.yellow">Family Medicine</ion-checkbox>
-            <ion-checkbox ng-model="search.pink">Cardiology</ion-checkbox>
-            <ion-checkbox ng-model="search.brown">Gynecology</ion-checkbox>
-          </ion-list>
-        </div>
-        <div class="item item-divider">
-          <a class="button icon-left ion-flag button-clear button-calm">My Interests</a>
-        </div>
-      </div>
-    </div> -->
 
   </ion-content>
 </ion-view>

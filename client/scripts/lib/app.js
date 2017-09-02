@@ -17,9 +17,10 @@ import IntroCtrl from '../controllers/intro.controller';
 import LauncherCtrl from '../controllers/launcher.controller';
 
 import SearchCtrl from '../controllers/search.controller';
+
 import ProfileCtrl from '../controllers/profile.controller';
 import ProfileRegisterCtrl from '../controllers/profile-register.controller';
-
+import ProfileForgotCtrl from '../controllers/profile-forgot.controller';
 import ProfilePortfolioCtrl from '../controllers/profile-portfolio.controller';
 
 import AddCompanyCtrl from '../controllers/add-company.controller';
@@ -123,6 +124,7 @@ new Loader(App)
   .load(SearchCtrl)
   .load(ProfileCtrl)
   .load(ProfileRegisterCtrl)
+  .load(ProfileForgotCtrl)
   .load(ProfilePortfolioCtrl)
   .load(AddCompanyCtrl)
   .load(AddCompanyService)

@@ -1,6 +1,18 @@
 <ion-view view-title="Profile">
   <ion-content padding="true" class="has-header">
 
+    <div class="list card" ng-show="profile.currentUser && !profile.currentUser.anonymous">
+      <div class="item item-divider">
+        Email address not verified!
+      </div>
+      <div class="item item-text-wrap">
+        Verify your email address to have have full access to your account. If you have not received a verification email, click on the button below to send it again and make sure to check on your spam folder.
+        <button class="button button-block button-positive" ng-click="profile.sendVerificationEmail()">
+            Send Verification Email
+        </button>
+      </div>
+    </div>
+
     <div ng-show="!profile.currentUser || profile.currentUser.anonymous">
       <form name="loginForm" novalidate>
         <div class="card list">
@@ -17,9 +29,9 @@
             <div class="row">
 
               <div class="col">
-                <button class="button button-block button-calm button-outline button-stable" ng-click="profile.forgotPassword()">
+                <a class="button button-block button-calm button-outline button-stable" href="#/tab/forgot">
                   Forgot Password
-                </button>
+                </a>
               </div>
 
               <div class="col">

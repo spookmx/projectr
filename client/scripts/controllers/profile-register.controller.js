@@ -40,8 +40,15 @@ export default class ProfileRegisterCtrl extends Controller {
   }
 
   registerCompleted(){
-    this.loading(false);
-    this.$state.go('tab.profile');
+    this.callMethod('sendVerificationEmail', this.userId, (err, result) => {
+      if (err) return this.handleError(err);
+      this.loading(false);
+      var alertPopup = this.$ionicPopup.alert({
+        title: 'Register',
+        template: 'An email with instructions to verify your email address will be sent out shortly.'
+       });
+      this.$state.go('tab.profile');
+    });
   }
 
   passwordToggle(){
