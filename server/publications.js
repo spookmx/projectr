@@ -39,12 +39,10 @@ Meteor.publish('cities', function() {
   return Cities.find({});
 });
 
-Meteor.publish('requests', function(anonymousUserId) {
-  //To Do - Publish only requests for the current user, on the susbscribing controllers auto-login first or reject
-  anonymousUserId ? this.requester = anonymousUserId : this.requester = this.userId;
+Meteor.publish('requests', function() {
   return Requests.find({
       $or: [
-        { requester: this.requester },
+        { requester: this.userId },
         { representative: this.userId },
       ]
     });

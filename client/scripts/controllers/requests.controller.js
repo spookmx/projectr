@@ -11,13 +11,7 @@ export default class RequestsCtrl extends Controller {
         viewData.enableBack = false;
     });
 
-    this.subscribe('requests', ()=>{
-      if(this.currentUserId){
-        return [null];
-      }else{
-        return [this.getReactively('userId')];
-      }
-    });
+    this.subscribe('requests');
 
     this.helpers({
       open(){
@@ -31,13 +25,6 @@ export default class RequestsCtrl extends Controller {
       },
       cancelled(){
         return Requests.find({status:'Cancelled'});
-      },
-      userId(){
-        if(this.currentUserId){
-          return this.currentUserId;
-        }else{
-          return localStorage.getItem('anonymousUserId');
-        }
       }
     });
   }

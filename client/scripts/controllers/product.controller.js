@@ -9,10 +9,14 @@ export default class ProductCtrl extends Controller {
     this.loading(true);
     this.productId = this.$stateParams.productId;
     this.subscribe('products');
+    this.subscribe('users', () => []);
     this.helpers({
       selectedProduct() {
         return Products.findOne({_id: this.productId});
       },
+      user() {
+        return Meteor.users.findOne({_id:Meteor.userId()});
+      }
     });
     this.$scope.$watch('product.selectedProduct', () => {
       if(this.selectedProduct){

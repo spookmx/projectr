@@ -9,7 +9,7 @@
       {{product.selectedProduct.description}}
     </p>
 
-    <div class="card">
+    <div ng-if="profile.user.roleAttribute == 'rep'" class="card">
       <product-reps ng-if="product.selectedProduct" product="product.selectedProduct"></product-reps>
     </div>
 
@@ -33,6 +33,6 @@
         </div>
       </div>
     </div>
-    
+
   </ion-content>
 </ion-modal-view>

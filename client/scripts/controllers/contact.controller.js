@@ -16,6 +16,7 @@ export default class ContactCtrl extends Controller {
         return [this.getReactively('userId')];
       }
     });
+    
     this.helpers({
       activeRequests(){
         if(this.getReactively('user.roleAttribute')=='rep'){

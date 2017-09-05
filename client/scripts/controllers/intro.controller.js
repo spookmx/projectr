@@ -9,6 +9,18 @@ export default class IntroCtrl extends Controller {
     let selectedLocation = JSON.parse(storage.getItem('location'));
     selectedLocation ? this.$rootScope.selectedLocation = selectedLocation : null;
 
+    
+    if(!this.$rootScope.currentUserId){
+      if(!localStorage.getItem('anonymousUserId')){
+        let anonymousUserId = Random.id();
+        localStorage.setItem('anonymousUserId', anonymousUserId);
+        Accounts.createUser({password:anonymousUserId, email:anonymousUserId+'@'+anonymousUserId+'.com'}, this.updateInitialInfo());
+      }else{
+        let anonymousUserId = localStorage.getItem('anonymousUserId');
+        Meteor.loginWithPassword(anonymousUserId+"@"+anonymousUserId+'.com', anonymousUserId, (error)=>{ console.log(error);});
+      }
+    }
+
     if(this.$rootScope.selectedLocation){
       this.stateSelectedId = this.$rootScope.selectedLocation.stateId;
       if(this.$rootScope.selectedLocation.cityId){

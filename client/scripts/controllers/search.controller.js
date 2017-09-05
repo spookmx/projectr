@@ -4,18 +4,36 @@ export default class SearchCtrl extends Controller {
   constructor() {
     super(...arguments);
 
-    this.searchText = '';
+    this.searchText = this.message = '';
     let storage = window.localStorage;
     let selectedLocation = JSON.parse(storage.getItem('location'));
     selectedLocation ? this.$rootScope.selectedLocation = selectedLocation : null;
+
+    if(!this.$rootScope.currentUserId){
+      if(!localStorage.getItem('anonymousUserId')){
+        let anonymousUserId = Random.id();
+        localStorage.setItem('anonymousUserId', anonymousUserId);
+        Accounts.createUser({password:anonymousUserId, email:anonymousUserId+'@'+anonymousUserId+'.com'}, this.updateInitialInfo());
+      }else{
+        let anonymousUserId = localStorage.getItem('anonymousUserId');
+        Meteor.loginWithPassword(anonymousUserId+"@"+anonymousUserId+'.com', anonymousUserId, (error)=>{ error ? console.log(error) : null;});
+      }
+    }
+
   }
 
   search(){
     this.loading(true);
     this.callMethod('search', this.searchText, (err, result) => {
       if (err) return this.handleError(err);
-      this.products = result;
       this.loading(false);
+      if(result.length == 0){
+        this.message = 'No results found. Try searching a different location or product.';
+        this.products = [];
+      }else{
+        this.message = '';
+        this.products = result;
+      }
     });
   }
 

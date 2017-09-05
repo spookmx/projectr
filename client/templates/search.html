@@ -2,11 +2,11 @@
   <ion-content padding="true" class="has-header">
 
     <p>
-      Version 0.0.4
+      Version 0.0.5
     </p>
 
     <label class="item item-input">
-      <input type="text" placeholder="Search..." ng-model="search.searchText">
+      <input type="text" placeholder="Enter product name..." ng-model="search.searchText">
       <a ng-if="search.searchText != ''" on-touch="search.searchText=''">
          <i class="icon ion-ios-close placeholder-icon"></i>
       </a>
@@ -17,9 +17,16 @@
       <input class="item-input-button" type="text" placeholder="Search by city or state" ng-model="search.$rootScope.selectedLocation.label">
     </label>
 
-    <button class="button button-full button-positive" ng-click="search.search()" ng-enabled="search.$rootScope.selectedLocation.label">
+    <button class="button button-full button-positive" ng-click="search.search()" ng-disabled="!search.$rootScope.selectedLocation.label || search.searchText.length < 3">
       Search
     </button>
+
+    <div class="list" ng-if="search.message">
+      <li class="item item-icon-left">
+        <i class="icon ion-information-circled"></i>
+        {{ search.message }}
+      </li>
+    </div>
 
     <div class="list">
       <a class="item" ng-repeat="product in search.products | orderBy:'name'" href="#/tab/product/{{product._id}}">

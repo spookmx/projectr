@@ -8,10 +8,16 @@ export default class ProductRepsCtrl extends Controller {
     super(...arguments);
     this._ = _;
     this.location = this.$rootScope.selectedLocation;
+    this.subscribe('users', () => []);
     this.helpers({
+      user() {
+        return Meteor.users.findOne({_id:Meteor.userId()});
+      }
     });
+    this.loading(true);
     this.query = {product: this.product, location:this.location};
     this.callMethod('productReps', this.query, (err, result) => {
+      this.loading(false);
       if (err) return this.handleError(err);
       this.handleProductReps(result);
     });
@@ -98,6 +104,10 @@ export default class ProductRepsCtrl extends Controller {
     this.reps.length >= 1 ? this.repSelected = this.reps[0]._id : null;
   }
 
+  loading(show){
+    show ? this.$ionicLoading.show({template: '<ion-spinner icon="lines" class="spinner-light"></ion-spinner>'}): this.$ionicLoading.hide();
+  }
+
   handleError(err) {
     this.$log.error('Product reps error ', err);
 
@@ -110,4 +120,4 @@ export default class ProductRepsCtrl extends Controller {
 }
 
 ProductRepsCtrl.$name = 'ProductRepsCtrl';
-ProductRepsCtrl.$inject = ['$ionicPopup', '$log', '$scope', '$location', '$rootScope', '$state', '$timeout'];
+ProductRepsCtrl.$inject = ['$ionicPopup', '$log', '$scope', '$location', '$rootScope', '$state', '$timeout', '$ionicLoading'];

@@ -5,9 +5,7 @@ export default class ProfileCtrl extends Controller {
   constructor() {
 
     super(...arguments);
-
     this.subscribe('users', () => []);
-
     this.helpers({
       user() {
         return Meteor.users.findOne({_id:Meteor.userId()});
@@ -36,7 +34,23 @@ export default class ProfileCtrl extends Controller {
   }
   logout(){
     this.loading(true);
-    Meteor.logout(this.loading(false));
+    Meteor.logout(()=>{
+      this.loading(false);
+
+      //START Login with anonymousUserId =====>
+      if(!localStorage.getItem('anonymousUserId')){
+        let anonymousUserId = Random.id();
+        localStorage.setItem('anonymousUserId', anonymousUserId);
+        Accounts.createUser({password:anonymousUserId, email:anonymousUserId+'@'+anonymousUserId+'.com'}, this.updateInitialInfo());
+      }else{
+        let anonymousUserId = localStorage.getItem('anonymousUserId');
+        Meteor.loginWithPassword(anonymousUserId+"@"+anonymousUserId+'.com', anonymousUserId, (error)=>{
+           error ? console.log(error) : null;
+           console.log(this);
+         });
+      }
+      // END Login with anonymousUserId =====>
+    });
   }
   login(){
     this.loading(true);
