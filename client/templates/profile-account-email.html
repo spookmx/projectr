@@ -1,0 +1,29 @@
+<ion-modal-view ng-controller="ProfileAccountEmailCtrl as profileAccountEmail">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="profileAccountEmail.hideProfileAccountEmailModal()">Cancel</button>
+    </div>
+    <h1 class="title">Change Email</h1>
+    <div class="buttons">
+      <button class="button button-positive" ng-disabled="profileAccountEmail.form.$invalid" ng-click="profileAccountEmail.doneProfileAccountEmailModal()">Done</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <form name="profileAccountEmail.form" novalidate>
+
+      <label class="item item-input item-stacked-label">
+        <div class="input-label">
+          Email
+          <small class="assertive" ng-if="profileAccountEmail.form.email.$invalid && !profileAccountEmail.form.email.$pristine">
+            Invalid
+          </small>
+        </div>
+        <input type="email" name="email" placeholder="john@smith.com" ng-model="profileAccountEmail.user.emails[0].address" required>
+      </label>
+
+    </form>
+
+  </ion-content>
+</ion-modal-view>

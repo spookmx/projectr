@@ -1,0 +1,31 @@
+<ion-modal-view ng-controller="ProfileAccountRoleCtrl as profileAccountRole">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="profileAccountRole.hideProfileAccountRoleModal()">Cancel</button>
+    </div>
+    <h1 class="title">Change Role</h1>
+    <div class="buttons">
+      <button class="button button-positive" ng-disabled="profileAccountRole.form.$invalid" ng-click="profileAccountRole.doneProfileAccountRoleModal()">Done</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <form name="profileAccountRole.form" novalidate>
+
+      <label class="item item-input item-select">
+        <div class="input-label">
+          Occupation
+        </div>
+        <select ng-model="profileAccountRole.user.roleAttribute" required>
+          <option value="" disabled>- Please Choose -</option>
+          <option value="doctor">Doctor</option>
+          <option value="nurse">Nurse</option>
+          <option value="stock">Stock Manager</option>
+        </select>
+      </label>
+
+    </form>
+
+  </ion-content>
+</ion-modal-view>

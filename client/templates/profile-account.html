@@ -1,15 +1,15 @@
 <ion-view view-title="Account Settings">
   <ion-content padding="true" >
     <div class="list">
-        <a ng-click="profileAccount.showProfileAccountNameModal();" class="item">
+        <a ng-click="profileAccount.showProfileAccountNameModal()" class="item">
           Name
           <span class="badge">{{ profileAccount.user.givenName }} {{ profileAccount.user.familyName }}</span>
         </a>
-        <a ng-if="profileAccount.user.roleAttribute != 'rep' && profileAccount.user.roleAttribute != 'manager'" class="item">
+        <a ng-click="profileAccount.showProfileAccountRoleModal()" ng-if="profileAccount.user.roleAttribute != 'rep' && profileAccount.user.roleAttribute != 'manager'" class="item">
           Role
           <span class="badge">{{ profileAccount.roles[profileAccount.user.roleAttribute] }} </span>
         </a>
-        <a class="item">
+        <a ng-click="profileAccount.showProfileAccountEmailModal()" class="item">
           Email
           <span class="badge">{{ profileAccount.user.emails[0].address }}</span>
         </a>

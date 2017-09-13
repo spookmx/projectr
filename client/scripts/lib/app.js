@@ -26,6 +26,12 @@ import ProfilePortfolioCtrl from '../controllers/profile-portfolio.controller';
 import ProfileAccountNameCtrl from '../controllers/profile-account-name.controller';
 import ProfileAccountNameService from '../services/profile-account-name.service';
 
+import ProfileAccountRoleCtrl from '../controllers/profile-account-role.controller';
+import ProfileAccountRoleService from '../services/profile-account-role.service';
+
+import ProfileAccountEmailCtrl from '../controllers/profile-account-email.controller';
+import ProfileAccountEmailService from '../services/profile-account-email.service';
+
 import AddCompanyCtrl from '../controllers/add-company.controller';
 import AddCompanyService from '../services/add-company.service';
 
@@ -125,12 +131,18 @@ new Loader(App)
   .load(IntroCtrl)
   .load(LauncherCtrl)
   .load(SearchCtrl)
+
   .load(ProfileCtrl)
   .load(ProfileRegisterCtrl)
   .load(ProfileForgotCtrl)
   .load(ProfilePortfolioCtrl)
   .load(ProfileAccountNameService)
   .load(ProfileAccountNameCtrl)
+  .load(ProfileAccountRoleService)
+  .load(ProfileAccountRoleCtrl)
+  .load(ProfileAccountEmailService)
+  .load(ProfileAccountEmailCtrl)
+  
   .load(AddCompanyCtrl)
   .load(AddCompanyService)
   .load(PortfolioCompanyDirective)
