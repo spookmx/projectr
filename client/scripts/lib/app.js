@@ -23,6 +23,9 @@ import ProfileRegisterCtrl from '../controllers/profile-register.controller';
 import ProfileForgotCtrl from '../controllers/profile-forgot.controller';
 import ProfilePortfolioCtrl from '../controllers/profile-portfolio.controller';
 
+import ProfileAccountNameCtrl from '../controllers/profile-account-name.controller';
+import ProfileAccountNameService from '../services/profile-account-name.service';
+
 import AddCompanyCtrl from '../controllers/add-company.controller';
 import AddCompanyService from '../services/add-company.service';
 
@@ -126,6 +129,8 @@ new Loader(App)
   .load(ProfileRegisterCtrl)
   .load(ProfileForgotCtrl)
   .load(ProfilePortfolioCtrl)
+  .load(ProfileAccountNameService)
+  .load(ProfileAccountNameCtrl)
   .load(AddCompanyCtrl)
   .load(AddCompanyService)
   .load(PortfolioCompanyDirective)

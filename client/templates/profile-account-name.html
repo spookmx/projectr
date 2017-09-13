@@ -1,0 +1,39 @@
+<ion-modal-view ng-controller="ProfileAccountNameCtrl as profileAccountName">
+  <ion-header-bar>
+    <div class="buttons">
+      <button class="button button-clear button-positive" ng-click="profileAccountName.hideProfileAccountNameModal()">Cancel</button>
+    </div>
+    <h1 class="title">Change Name</h1>
+    <div class="buttons">
+      <button class="button button-positive" ng-disabled="profileAccountName.form.$invalid" ng-click="profileAccountName.doneProfileAccountNameModal()">Done</button>
+    </div>
+  </ion-header-bar>
+
+  <ion-content>
+
+    <form name="profileAccountName.form" novalidate>
+
+      <label class="item item-input item-stacked-label">
+        <div class="input-label">
+          First Name
+          <small class="assertive" ng-if="profileAccountName.form.givenName.$error.required && !profileAccountName.form.givenName.$pristine">
+            Required
+          </small>
+        </div>
+        <input type="text" name="givenName" placeholder="John" ng-model="profileAccountName.user.givenName" required>
+      </label>
+
+      <label class="item item-input item-stacked-label">
+        <div class="input-label">
+          Last Name
+          <small class="assertive" ng-if="profileAccountName.form.familyName.$error.required && !profileAccountName.form.familyName.$pristine">
+            Required
+          </small>
+        </div>
+        <input type="text" name="familyName" placeholder="Smith" ng-model="profileAccountName.user.familyName" required>
+      </label>
+
+    </form>
+
+  </ion-content>
+</ion-modal-view>

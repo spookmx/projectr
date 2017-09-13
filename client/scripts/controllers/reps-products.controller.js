@@ -83,6 +83,21 @@ export default class RepsProductsCtrl extends Controller {
     });
   }
 
+  updateInitialInfo(){
+    this.$scope.$watch('repsProducts.currentUserId', () => {
+      if(this.currentUserId){
+        Meteor.users.update(this.currentUserId, {
+          $set: {
+            givenName: 'Anonymous',
+            familyName: 'User',
+            roleAttribute: 'pro',
+            anonymous: true
+          }
+        });
+      }
+    });
+  }
+
   handleAddRequest(result){
     this.$state.go('tab.requests');
     this.$scope.$apply();
@@ -90,7 +105,6 @@ export default class RepsProductsCtrl extends Controller {
 
   handleError(err) {
     this.$log.error('Product reps error ', err);
-
     this.$ionicPopup.alert({
       title: err.reason || 'Failed to find product reps',
       template: 'Please try again',

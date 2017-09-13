@@ -52,6 +52,20 @@ export default class ProfileCtrl extends Controller {
       // END Login with anonymousUserId =====>
     });
   }
+  updateInitialInfo(){
+    this.$scope.$watch('profile.currentUserId', () => {
+      if(this.currentUserId){
+        Meteor.users.update(this.currentUserId, {
+          $set: {
+            givenName: 'Anonymous',
+            familyName: 'User',
+            roleAttribute: 'pro',
+            anonymous: true
+          }
+        });
+      }
+    });
+  }
   login(){
     this.loading(true);
     Meteor.loginWithPassword(this.loginForm.email, this.loginForm.password, (error)=>{

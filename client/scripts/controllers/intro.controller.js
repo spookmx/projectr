@@ -1,15 +1,18 @@
 import { Controller } from 'angular-ecmascript/module-helpers';
 import { Cities, States } from '../../../lib/collections';
+import { Random } from 'meteor/random';
 
 export default class IntroCtrl extends Controller {
   constructor() {
     super(...arguments);
 
+    this.$ionicNavBarDelegate.showBackButton(false);
+
     let storage = window.localStorage;
     let selectedLocation = JSON.parse(storage.getItem('location'));
     selectedLocation ? this.$rootScope.selectedLocation = selectedLocation : null;
 
-    
+
     if(!this.$rootScope.currentUserId){
       if(!localStorage.getItem('anonymousUserId')){
         let anonymousUserId = Random.id();
@@ -29,6 +32,8 @@ export default class IntroCtrl extends Controller {
         this.citySelectedId = 'all';
       }
     }
+
+
 
 
     this.searchText = '';
@@ -56,6 +61,21 @@ export default class IntroCtrl extends Controller {
 
   }
 
+  updateInitialInfo(){
+    this.$scope.$watch('intro.currentUserId', () => {
+      if(this.currentUserId){
+        Meteor.users.update(this.currentUserId, {
+          $set: {
+            givenName: 'Anonymous',
+            familyName: 'User',
+            roleAttribute: 'pro',
+            anonymous: true
+          }
+        });
+      }
+    });
+  }
+
   getStarted(){
     if(this.citySelectedId == "all"){
       this.selectedLocation = {label:this.stateSelected.name, cityName:null, stateId:this.stateSelected._id, cityId:null, stateName:this.stateSelected.name, stateAbbrev:this.stateSelected.abbreviation};
@@ -65,7 +85,10 @@ export default class IntroCtrl extends Controller {
     let storage = window.localStorage;
     storage.setItem('location', JSON.stringify(this.selectedLocation));
     this.$rootScope.selectedLocation = this.selectedLocation;
-    this.$timeout(()=>{this.$state.go('tab.search')} , 500);
+    this.$timeout(()=>{
+      this.$ionicNavBarDelegate.showBackButton(true);
+      this.$state.go('tab.search');
+    } , 500);
   }
 
   selectionView(){
@@ -74,4 +97,4 @@ export default class IntroCtrl extends Controller {
 }
 
 IntroCtrl.$name = 'IntroCtrl';
-IntroCtrl.$inject = ['$log', '$scope', '$rootScope', '$state', '$ionicSlideBoxDelegate', '$timeout'];
+IntroCtrl.$inject = ['$log', '$scope', '$rootScope', '$state', '$ionicSlideBoxDelegate', '$timeout', '$ionicNavBarDelegate'];

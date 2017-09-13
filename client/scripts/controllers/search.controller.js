@@ -1,4 +1,5 @@
 import { Controller } from 'angular-ecmascript/module-helpers';
+import { Random } from 'meteor/random';
 
 export default class SearchCtrl extends Controller {
   constructor() {
@@ -22,6 +23,21 @@ export default class SearchCtrl extends Controller {
 
   }
 
+  updateInitialInfo(){
+    this.$scope.$watch('search.currentUserId', () => {
+      if(this.currentUserId){
+        Meteor.users.update(this.currentUserId, {
+          $set: {
+            givenName: 'Anonymous',
+            familyName: 'User',
+            roleAttribute: 'pro',
+            anonymous: true
+          }
+        });
+      }
+    });
+  }
+
   search(){
     this.loading(true);
     this.callMethod('search', this.searchText, (err, result) => {
@@ -42,7 +58,7 @@ export default class SearchCtrl extends Controller {
   }
 
   showSearchSelectLocationModal(){
-    this.SearchSelectLocation.showModal(this.companyId);
+    this.SearchSelectLocation.showModal();
   }
 }
 
