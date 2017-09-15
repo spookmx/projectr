@@ -32,6 +32,9 @@ import ProfileAccountRoleService from '../services/profile-account-role.service'
 import ProfileAccountEmailCtrl from '../controllers/profile-account-email.controller';
 import ProfileAccountEmailService from '../services/profile-account-email.service';
 
+import ProfileAccountPasswordCtrl from '../controllers/profile-account-password.controller';
+import ProfileAccountPasswordService from '../services/profile-account-password.service';
+
 import AddCompanyCtrl from '../controllers/add-company.controller';
 import AddCompanyService from '../services/add-company.service';
 
@@ -142,7 +145,9 @@ new Loader(App)
   .load(ProfileAccountRoleCtrl)
   .load(ProfileAccountEmailService)
   .load(ProfileAccountEmailCtrl)
-  
+  .load(ProfileAccountPasswordService)
+  .load(ProfileAccountPasswordCtrl)
+
   .load(AddCompanyCtrl)
   .load(AddCompanyService)
   .load(PortfolioCompanyDirective)

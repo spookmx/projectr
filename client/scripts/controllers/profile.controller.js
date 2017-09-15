@@ -46,7 +46,6 @@ export default class ProfileCtrl extends Controller {
         let anonymousUserId = localStorage.getItem('anonymousUserId');
         Meteor.loginWithPassword(anonymousUserId+"@"+anonymousUserId+'.com', anonymousUserId, (error)=>{
            error ? console.log(error) : null;
-           console.log(this);
          });
       }
       // END Login with anonymousUserId =====>

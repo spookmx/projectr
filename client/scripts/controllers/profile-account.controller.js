@@ -29,6 +29,10 @@ export default class ProfileAccountCtrl extends Controller {
     this.ProfileAccountEmail.showModal();
   }
 
+  showProfileAccountPasswordModal(){
+    this.ProfileAccountPassword.showModal();
+  }
+
   loading(show){
     show ? this.$ionicLoading.show({template: '<ion-spinner icon="lines" class="spinner-light"></ion-spinner>'}): this.$ionicLoading.hide();
   }
@@ -36,4 +40,4 @@ export default class ProfileAccountCtrl extends Controller {
 }
 
 ProfileAccountCtrl.$name = 'ProfileAccountCtrl';
-ProfileAccountCtrl.$inject = ['ProfileAccountName', 'ProfileAccountRole', 'ProfileAccountEmail', '$scope', '$state', '$ionicLoading', '$ionicModal', '$log'];
+ProfileAccountCtrl.$inject = ['ProfileAccountName', 'ProfileAccountRole', 'ProfileAccountEmail', 'ProfileAccountPassword', '$scope', '$state', '$ionicLoading', '$ionicModal', '$log'];

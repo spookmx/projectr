@@ -13,7 +13,7 @@
           Email
           <span class="badge">{{ profileAccount.user.emails[0].address }}</span>
         </a>
-        <a class="item">
+        <a ng-click="profileAccount.showProfileAccountPasswordModal()" class="item">
           Change Password
         </a>
       </div>
