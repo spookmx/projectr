@@ -6,10 +6,9 @@ export default class ProfileRegisterCtrl extends Controller {
     super(...arguments);
     this.passwordToggleLabel = "Show";
     this.passwordToggleShow = false;
-    this.helpers({
-      userId() {
-        return Meteor.userId();
-      }
+    this.loading(true);
+    Meteor.logout(()=>{
+      this.loading(false);
     });
   }
 
@@ -26,9 +25,9 @@ export default class ProfileRegisterCtrl extends Controller {
   }
 
   updateInitialInfo(){
-    this.$scope.$watch('profileRegister.userId', () => {
-      if(this.userId){
-        Meteor.users.update(this.userId, {
+    this.$scope.$watch('profileRegister.currentUserId', () => {
+      if(this.currentUserId){
+        Meteor.users.update(this.currentUserId, {
           $set: {
             givenName: this.givenName,
             familyName: this.familyName,
@@ -40,7 +39,7 @@ export default class ProfileRegisterCtrl extends Controller {
   }
 
   registerCompleted(){
-    this.callMethod('sendVerificationEmail', this.userId, (err, result) => {
+    this.callMethod('sendVerificationEmail', this.currentUserId, (err, result) => {
       if (err) return this.handleError(err);
       this.loading(false);
       var alertPopup = this.$ionicPopup.alert({
